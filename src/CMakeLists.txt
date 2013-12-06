@@ -24,6 +24,7 @@ include(lib/exception/CMakeLists.txt)
 ########### Modules. ###############
 
 include(modules/logger/CMakeLists.txt)
+include(modules/unit/CMakeLists.txt)
 
 
 ########### Programs. ###############
@@ -37,6 +38,11 @@ if(MAKE_UNIT_TESTS)
 		unit_test/lib/utility/concatenate.cpp
 		unit_test/modules/logger/logger.cpp
 		unit_test/modules/logger/module.cpp
+		unit_test/modules/unit/quantity.cpp
+		unit_test/modules/unit/quantity/arithmetic.cpp
+		unit_test/modules/unit/quantity/comparison.cpp
+		unit_test/modules/unit/quantity/stream.cpp
+		unit_test/modules/unit/quantity/trigonometry.cpp
 		unit_test/unit_test.cpp
 	)
 
@@ -47,6 +53,7 @@ if(MAKE_UNIT_TESTS)
 
 	target_link_libraries(unit_test
 		logger
+		unit
 		${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
 	)
 
