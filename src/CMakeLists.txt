@@ -24,6 +24,7 @@ include(lib/exception/CMakeLists.txt)
 ########### Modules. ###############
 
 include(modules/logger/CMakeLists.txt)
+include(modules/geometry/CMakeLists.txt)
 include(modules/unit/CMakeLists.txt)
 
 
@@ -36,6 +37,8 @@ if(MAKE_UNIT_TESTS)
 	add_executable(unit_test
 		unit_test/exception.cpp
 		unit_test/lib/utility/concatenate.cpp
+		unit_test/modules/geometry/coordinate.cpp # For both cartesian and polar.
+		unit_test/modules/geometry/orbit.cpp
 		unit_test/modules/logger/logger.cpp
 		unit_test/modules/logger/module.cpp
 		unit_test/modules/unit/quantity.cpp
@@ -52,6 +55,7 @@ if(MAKE_UNIT_TESTS)
 	)
 
 	target_link_libraries(unit_test
+		geometry
 		logger
 		unit
 		${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
