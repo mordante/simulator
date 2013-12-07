@@ -17,7 +17,8 @@
 #define ENUM_LIST                                                              \
 	ENUM(invalid_value, "E_INVALID_VALUE");                                    \
 	ENUM(not_implemented_yet, "E_NOT_IMPLEMENTED");                            \
-	ENUM(internal_failure, "E_INTERNAL_FAILURE");
+	ENUM(internal_failure, "E_INTERNAL_FAILURE");                              \
+	ENUM(load_invalid_version, "E_LOAD_INVALID_VERSION");
 
 #include "lib/exception/exception.hpp"
 

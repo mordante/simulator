@@ -68,6 +68,16 @@ struct texception final
 		 */
 		,
 		internal_failure
+
+		/**
+		 * A non-supported version of a file was loaded.
+		 *
+		 * All classes that load a XML-property tree have a static member
+		 * called <i>load</i>. This function is able to convert certain
+		 * versions, if this loader fails it throws this exception.
+		 */
+		,
+		load_invalid_version
 	};
 
 
