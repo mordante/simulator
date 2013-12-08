@@ -23,6 +23,7 @@ link_directories(${Boost_LIBRARY_DIRS})
 if(MAKE_UNIT_TESTS)
 
 	add_executable(unit_test
+		unit_test/lib/utility/concatenate.cpp
 		unit_test/unit_test.cpp
 	)
 
