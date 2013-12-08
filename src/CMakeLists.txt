@@ -16,6 +16,11 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR}/)
 link_directories(${Boost_LIBRARY_DIRS})
 
 
+########### Libraries. ###############
+
+include(lib/exception/CMakeLists.txt)
+
+
 ########### Programs. ###############
 
 ###Unit test
