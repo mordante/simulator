@@ -1,0 +1,86 @@
+BasedOnStyle: LLVM
+
+ColumnLimit: 80
+TabWidth: 4
+# ForIndentation uses spaces for ConstructorInitializerAllOnOneLineOrOnePerLine
+# instead of spaces. This is also not perfect, but more to my liking
+#UseTab: ForIndentation
+UseTab: Always
+IndentWidth: 4
+AccessModifierOffset: -4
+ContinuationIndentWidth: 8
+IndentCaseLabels: true
+# no limit
+MaxEmptyLinesToKeep: 100
+
+Standard: Cpp11
+Cpp11BracedListStyle: true
+
+PointerBindsToType: true
+
+# Constructor
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+BreakConstructorInitializersBeforeComma: true
+
+
+# The break after the namespace is unwanted, but Stroustrup is worse
+# also the breaks around try and catch suck
+BreakBeforeBraces: Linux
+#BreakBeforeBraces: Stroustrup
+BreakBeforeBinaryOperators: true
+
+AlwaysBreakTemplateDeclarations: true
+
+# Penalties
+# (Actually like to force the return on its own line)
+PenaltyReturnTypeOnItsOwnLine: 0
+
+
+BinPackParameters: false
+SpaceAfterControlStatementKeyword: false
+
+
+### Output from $ clang-format-3.4 -dump-config
+# BasedOnStyle:  LLVM
+#AccessModifierOffset: -2
+#ConstructorInitializerIndentWidth: 4
+#AlignEscapedNewlinesLeft: false
+#AlignTrailingComments: true
+#AllowAllParametersOfDeclarationOnNextLine: true
+#AllowShortIfStatementsOnASingleLine: false
+#AllowShortLoopsOnASingleLine: false
+#AlwaysBreakTemplateDeclarations: false
+#AlwaysBreakBeforeMultilineStrings: false
+#BreakBeforeBinaryOperators: false
+#BreakConstructorInitializersBeforeComma: false
+#BinPackParameters: true
+#ColumnLimit:     80
+#ConstructorInitializerAllOnOneLineOrOnePerLine: false
+#DerivePointerBinding: false
+#ExperimentalAutoDetectBinPacking: false
+#IndentCaseLabels: false
+#MaxEmptyLinesToKeep: 1
+#NamespaceIndentation: None
+#ObjCSpaceBeforeProtocolList: true
+#PenaltyBreakBeforeFirstCallParameter: 19
+#PenaltyBreakComment: 60
+#PenaltyBreakString: 1000
+#PenaltyBreakFirstLessLess: 120
+#PenaltyExcessCharacter: 1000000
+#PenaltyReturnTypeOnItsOwnLine: 60
+#PointerBindsToType: false
+#SpacesBeforeTrailingComments: 1
+#Cpp11BracedListStyle: false
+#Standard:        Cpp03
+#IndentWidth:     2
+#TabWidth:        8
+#UseTab:          Never
+#BreakBeforeBraces: Attach
+#IndentFunctionDeclarationAfterType: false
+#SpacesInParentheses: false
+#SpacesInAngles:  false
+#SpaceInEmptyParentheses: false
+#SpacesInCStyleCastParentheses: false
+#SpaceAfterControlStatementKeyword: true
+#SpaceBeforeAssignmentOperators: true
+#ContinuationIndentWidth: 4
