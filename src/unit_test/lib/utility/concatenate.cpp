@@ -14,10 +14,16 @@
 
 #include "lib/utility/concatenate.tpp"
 
+#include "modules/logger/logger.hpp"
+
 #include <boost/test/unit_test.hpp>
+
+REGISTER_LOGGER_MODULE("/unit_test/lib/utility")
 
 static void stream()
 {
+	TRACE;
+
 	std::stringstream sstr;
 
 	lib::stream(sstr, "abc");
@@ -39,6 +45,8 @@ static void stream()
 
 static void concatenate()
 {
+	TRACE;
+
 	BOOST_CHECK_EQUAL(lib::concatenate("abc"), "abc");
 	BOOST_CHECK_EQUAL(lib::concatenate(42), "42");
 	BOOST_CHECK_EQUAL(lib::concatenate(3.141), "3.141");
@@ -48,6 +56,8 @@ static void concatenate()
 
 BOOST_AUTO_TEST_CASE(test_lib_utility_concatenate)
 {
+	TRACE;
+
 	stream();
 	concatenate();
 }

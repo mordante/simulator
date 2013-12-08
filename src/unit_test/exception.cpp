@@ -21,6 +21,8 @@ REGISTER_LOGGER_MODULE("/unit_test")
 bool exception_type_predicate(const lib::texception& exception,
 							  const lib::texception::ttype type)
 {
+	TRACE_PARAMETERS(type);
+
 	if(exception.type != type) {
 		LOG_E("Exception type mismatch, expected »",
 			  type,
@@ -38,6 +40,8 @@ bool exception_type_predicate_message(const lib::texception& exception,
 									  const lib::texception::ttype type,
 									  const std::string& message)
 {
+	TRACE_PARAMETERS(type, message);
+
 	if(exception.type != type) {
 		LOG_E("Exception type mismatch, expected »",
 			  type,
