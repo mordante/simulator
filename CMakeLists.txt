@@ -10,8 +10,12 @@ find_package(Boost
 	1.55
 	REQUIRED
 	COMPONENTS
+		log
+		system
+		thread
 		unit_test_framework)
 
+add_definitions("-DBOOST_LOG_DYN_LINK")
 
 ############ Compiler flags. ###########
 
@@ -226,14 +230,29 @@ check_compiler_has_flag(
 	"-Wno-padded"
 )
 
+check_compiler_has_flag(
+	CXX_FLAGS_PROJECT
+	"-Wdisabled-macro-expansion"
+	HAS_COMPILER_FLAG_WDISABLE_MACRO_EXPANSION
+	"-Wno-disabled-macro-expansion"
+)
+
 
 ############ Build options. ###########
 
 option(MAKE_UNIT_TESTS "Make the unit tests for the libraries and modules" OFF)
+option(ENABLE_TRACE_LOGGER "Enables the log level trace" OFF)
 option(ENABLE_STRICT_COMPILATION "Enables the strict compilation of the code" OFF)
 
 
 ############ Process options. ###########
+
+if(ENABLE_TRACE_LOGGER)
+	add_definitions(-DENABLE_TRACE_LOGGER)
+	# Needed to make the variadic marco TRACE_PARAMETERS in
+	# src/modules/logger/logger.hpp work properly.
+	add_definitions(-DBOOST_PP_VARIADICS=1)
+endif()
 
 if(ENABLE_STRICT_COMPILATION)
 	set(CXX_FLAGS_PROJECT "${CXX_FLAGS_PROJECT} -Werror ${CXX_FLAGS_USER}")
