@@ -26,6 +26,7 @@ include(lib/exception/CMakeLists.txt)
 include(modules/celestial/CMakeLists.txt)
 include(modules/logger/CMakeLists.txt)
 include(modules/geometry/CMakeLists.txt)
+include(modules/simulation/CMakeLists.txt)
 include(modules/unit/CMakeLists.txt)
 
 
@@ -44,6 +45,8 @@ if(MAKE_UNIT_TESTS)
 		unit_test/modules/geometry/orbit.cpp
 		unit_test/modules/logger/logger.cpp
 		unit_test/modules/logger/module.cpp
+		unit_test/modules/simulation/moon.cpp
+		unit_test/modules/simulation/sun.cpp
 		unit_test/modules/unit/quantity.cpp
 		unit_test/modules/unit/quantity/arithmetic.cpp
 		unit_test/modules/unit/quantity/comparison.cpp
@@ -61,6 +64,7 @@ if(MAKE_UNIT_TESTS)
 		celestial
 		geometry
 		logger
+		simulation
 		unit
 		${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
 	)
