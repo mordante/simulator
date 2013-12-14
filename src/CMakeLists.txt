@@ -23,6 +23,7 @@ include(lib/exception/CMakeLists.txt)
 
 ########### Modules. ###############
 
+include(modules/celestial/CMakeLists.txt)
 include(modules/logger/CMakeLists.txt)
 include(modules/geometry/CMakeLists.txt)
 include(modules/unit/CMakeLists.txt)
@@ -37,6 +38,8 @@ if(MAKE_UNIT_TESTS)
 	add_executable(unit_test
 		unit_test/exception.cpp
 		unit_test/lib/utility/concatenate.cpp
+		unit_test/modules/celestial/moon.cpp
+		unit_test/modules/celestial/sun.cpp
 		unit_test/modules/geometry/coordinate.cpp # For both cartesian and polar.
 		unit_test/modules/geometry/orbit.cpp
 		unit_test/modules/logger/logger.cpp
@@ -55,6 +58,7 @@ if(MAKE_UNIT_TESTS)
 	)
 
 	target_link_libraries(unit_test
+		celestial
 		geometry
 		logger
 		unit
