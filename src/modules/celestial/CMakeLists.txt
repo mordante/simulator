@@ -20,6 +20,7 @@ add_library(celestial STATIC
 
 target_link_libraries(celestial
 	geometry
+	grid
 	logger
 	unit
 )

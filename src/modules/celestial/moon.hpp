@@ -28,6 +28,7 @@
 
 #include "modules/geometry/cartesian.hpp"
 #include "modules/geometry/orbit.hpp"
+#include "modules/grid/point.hpp"
 #include "modules/unit/length.tpp"
 
 struct tunit_test;
@@ -112,6 +113,15 @@ public:
 	 */
 	geometry::tcartesian position(const unit::ttime time) const;
 
+	/**
+	 * Calculates the grid of the object at time @p time.
+	 *
+	 * @param time                The time at which the grid is requested.
+	 *
+	 * @returns                   The grid at time @p time.
+	 */
+	std::vector<grid::tpoint> grid(const unit::ttime time) const;
+
 
 	/***** ***** ***** ***** Setters and getters. ***** ***** ***** *****/
 
@@ -133,8 +143,30 @@ private:
 	/** The orbit point of the moon. */
 	geometry::torbit orbit_;
 
-	/** The radius of the moon. */
+	/**
+	 * The radius of the moon.
+	 *
+	 * @note If there will be a setter for this variable it also should update
+	 * the clear the @ref grid_ so the next call to @ref update_grid will
+	 * refresh the cached value.
+	 */
 	unit::tlength radius_;
+
+	/**
+	 * Contains the current object as a set of @ref grid::tpoint objects.
+	 *
+	 * @note The value is mutable since it might be the getter will
+	 * automatically update the value when needed.
+	 */
+	mutable std::vector<grid::tpoint> grid_{};
+
+	/**
+	 * Updates @ref grid_.
+	 *
+	 * The function assumes the current @ref grid_ is invalid and recalculates
+	 * it.
+	 */
+	void update_grid() const;
 };
 
 } // namespace celestial

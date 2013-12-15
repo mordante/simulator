@@ -15,7 +15,9 @@
 #include "modules/celestial/moon.hpp"
 
 #include "lib/exception/throw.tpp"
+#include "lib/raster/raster.tpp"
 #include "modules/geometry/stream.hpp"
+#include "modules/grid/sphere.hpp"
 #include "modules/logger/logger.hpp"
 #include "modules/unit/ptree.tpp"
 #include "modules/unit/quantity/stream.hpp"
@@ -86,11 +88,30 @@ geometry::tcartesian tmoon::position(const unit::ttime time) const
 	return origin_ + orbit_.position(time);
 }
 
+std::vector<grid::tpoint> tmoon::grid(const unit::ttime time) const
+{
+	TRACE_PARAMETERS(time);
+
+	update_grid();
+
+	const grid::tpoint origin{lib::raster(position(time))};
+	return grid_ + origin;
+}
+
 const std::string& tmoon::id() const
 {
 	TRACE_GETTER(id_);
 
 	return id_;
+}
+
+void tmoon::update_grid() const
+{
+	TRACE;
+
+	if(grid_.empty()) {
+		grid_ = grid::sphere(lib::raster(radius_), true);
+	}
 }
 
 } // namespace celestial
