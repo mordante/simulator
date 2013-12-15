@@ -90,6 +90,19 @@ static void test_arithmetic()
 							  (tpoint{2, 4, 6}));
 		}
 	}
+
+	{
+		const std::vector<tpoint> input{tpoint{1, 2, 3}, tpoint{2, 3, 4},
+										tpoint{3, 4, 5}, tpoint{4, 5, 6},
+										tpoint{5, 6, 7}};
+
+		const std::vector<tpoint> output{input + tpoint{1, 2, 3}};
+		BOOST_CHECK_EQUAL(output[0], (tpoint{2, 4, 6}));
+		BOOST_CHECK_EQUAL(output[1], (tpoint{3, 5, 7}));
+		BOOST_CHECK_EQUAL(output[2], (tpoint{4, 6, 8}));
+		BOOST_CHECK_EQUAL(output[3], (tpoint{5, 7, 9}));
+		BOOST_CHECK_EQUAL(output[4], (tpoint{6, 8, 10}));
+	}
 }
 
 /***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****/

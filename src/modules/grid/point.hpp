@@ -173,6 +173,18 @@ inline constexpr tpoint operator+(tpoint lhs, const tpoint& rhs) noexcept
 	return lhs;
 }
 
+/**
+ * The @c operator+ for a collection @ref grid::tpoint objects.
+ *
+ * @param rhs                     The right hand side object.
+ * @param lhs                     The left hand side object.
+ *
+ * @returns                       The object created by adding @p rhs to every
+ *                                item in @p lhs.
+ */
+std::vector<tpoint>
+operator+(std::vector<tpoint> lhs, const tpoint& rhs);
+
 /***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****/
 /***** Operations                                                        *****/
 /***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****/

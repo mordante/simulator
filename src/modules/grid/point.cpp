@@ -29,6 +29,16 @@ operator+=(std::vector<tpoint>& lhs, const tpoint& rhs) noexcept
 	return lhs;
 }
 
+std::vector<tpoint>
+operator+(std::vector<tpoint> lhs, const tpoint& rhs)
+{
+	for(auto& point : lhs) {
+		point += rhs;
+	}
+
+	return lhs;
+}
+
 bool intersects(const std::vector<tpoint>& lhs, const std::vector<tpoint>& rhs)
 {
 	return !intersection(lhs, rhs).empty();
