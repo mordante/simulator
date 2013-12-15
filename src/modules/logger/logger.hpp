@@ -117,7 +117,7 @@ public:
 				BOOST_PP_REPEAT(N, BUILD_LOG_FUNCTION_SHIFT, p);               \
 	}
 
-#define BUILD_LOG_FUNCTION_MAX 16
+#define BUILD_LOG_FUNCTION_MAX 24
 
 	/**
 	 * Generates the log functions.
