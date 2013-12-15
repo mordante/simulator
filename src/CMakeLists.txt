@@ -26,6 +26,7 @@ include(lib/exception/CMakeLists.txt)
 include(modules/celestial/CMakeLists.txt)
 include(modules/logger/CMakeLists.txt)
 include(modules/geometry/CMakeLists.txt)
+include(modules/grid/CMakeLists.txt)
 include(modules/simulation/CMakeLists.txt)
 include(modules/unit/CMakeLists.txt)
 
@@ -43,6 +44,10 @@ if(MAKE_UNIT_TESTS)
 		unit_test/modules/celestial/sun.cpp
 		unit_test/modules/geometry/coordinate.cpp # For both cartesian and polar.
 		unit_test/modules/geometry/orbit.cpp
+		unit_test/modules/grid/line.cpp
+		unit_test/modules/grid/circle.cpp
+		unit_test/modules/grid/point.cpp
+		unit_test/modules/grid/sphere.cpp
 		unit_test/modules/logger/logger.cpp
 		unit_test/modules/logger/module.cpp
 		unit_test/modules/simulation/moon.cpp
@@ -63,6 +68,7 @@ if(MAKE_UNIT_TESTS)
 	target_link_libraries(unit_test
 		celestial
 		geometry
+		grid
 		logger
 		simulation
 		unit
