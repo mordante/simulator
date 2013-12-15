@@ -93,9 +93,7 @@ std::vector<grid::tpoint> tmoon::grid(const unit::ttime time) const
 	TRACE_PARAMETERS(time);
 
 	update_grid();
-
-	const grid::tpoint origin{lib::raster(position(time))};
-	return grid_ + origin;
+	return grid_ + lib::raster(position(time));
 }
 
 const std::string& tmoon::id() const
