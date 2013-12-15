@@ -52,7 +52,7 @@ tmoon tmoon::load(const boost::property_tree::ptree& moon)
 
 	switch(const int version{moon.get<int>("version")}) {
 		case 1:
-			return tmoon(moon);
+			return tmoon{moon};
 
 		default:
 			THROW_F(load_invalid_version,

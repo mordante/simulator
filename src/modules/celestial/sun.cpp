@@ -55,7 +55,7 @@ tsun tsun::load(const boost::property_tree::ptree& sun)
 
 	switch(const int version{sun.get<int>("version")}) {
 		case 1:
-			return tsun(sun);
+			return tsun{sun};
 
 		default:
 			THROW_F(load_invalid_version,
