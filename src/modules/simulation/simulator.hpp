@@ -19,7 +19,10 @@
 
 #include "modules/simulation/detail/state.hpp"
 
+#include <map>
 #include <vector>
+
+struct tunit_test;
 
 namespace simulation
 {
@@ -29,7 +32,14 @@ namespace simulation
  */
 class tsimulator
 {
+	friend ::tunit_test;
+
 public:
+	/***** ***** ***** ***** Types. ***** ***** ***** *****/
+
+	/** Helper struct thrown when two (or more) celestial bodies collide. */
+	struct tcollision {};
+
 	/***** Constructors, assign operators, destructor. *****/
 
 	tsimulator() = delete;
@@ -130,6 +140,9 @@ public:
 	 *
 	 * @param seconds             The number of seconds the simulation should
 	 *                            run. Every second is one iteration.
+	 *
+	 * @throw tcollision          When a collision between two (or more)
+	 *                            celestial bodies occur.
 	 */
 	void run(const unit::ttime seconds);
 
@@ -147,8 +160,48 @@ private:
 	/** The various states in the simulation. */
 	std::vector<detail::tstate> states_{};
 
-	/** Updates the positions of all celestial bodies. */
+	/**
+	 * A cache containing the grids with the positions of the suns.
+	 *
+	 * This cache is updated by @ref update_positions and valid for the current
+	 * iteration of the simulator.
+	 */
+	std::map<std::string, std::vector<grid::tpoint>> sun_positions_{};
+
+	/**
+	 * A cache containing the grids with the positions of the moons.
+	 *
+	 * This cache is updated by @ref update_positions and valid for the current
+	 * iteration of the simulator.
+	 */
+	std::map<std::string, std::vector<grid::tpoint>> moon_positions_{};
+
+
+	/***** ***** ***** ***** Operations. ***** ***** ***** *****/
+
+	/**
+	 * Updates the positions of all celestial bodies.
+	 *
+	 * The function handles the following updates.
+	 * - Creates a new state which is added to the back of @ref states_.
+	 * - Updates the sun position cache @ref sun_positions_.
+	 * - Updates the moon position cache @ref moon_positions_.
+	 *
+	 * It is also responsible to make sure there are no collision in the
+	 * universe.
+	 */
 	void update_positions();
+
+	/**
+	 * Checks whether celestial bodies have collided.
+	 *
+	 * At the moment the simulator can not handle collisions, so the simulation
+	 * terminates.
+	 *
+	 * @throw tcollision          When a collision between two (or more)
+	 *                            celestial bodies occur.
+	 */
+	void check_collisions() const;
 };
 
 } // namespace simulation

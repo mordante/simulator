@@ -51,6 +51,7 @@ if(MAKE_UNIT_TESTS)
 		unit_test/modules/logger/logger.cpp
 		unit_test/modules/logger/module.cpp
 		unit_test/modules/simulation/moon.cpp
+		unit_test/modules/simulation/simulator.cpp
 		unit_test/modules/simulation/sun.cpp
 		unit_test/modules/unit/quantity.cpp
 		unit_test/modules/unit/quantity/arithmetic.cpp

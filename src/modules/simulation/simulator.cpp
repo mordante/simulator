@@ -15,6 +15,7 @@
 #include "modules/simulation/simulator.hpp"
 
 #include "lib/exception/throw.tpp"
+#include "lib/exception/validate.tpp"
 #include "modules/logger/logger.hpp"
 #include "modules/unit/quantity/comparison.tpp"
 #include "modules/unit/quantity/stream.hpp"
@@ -130,19 +131,81 @@ void tsimulator::update_positions()
 	TRACE;
 
 	/* Create a new state. */
-	detail::tstate state(
-			unit::ttime(static_cast<unit::ttime::type>(states_.size())));
+	detail::tstate state{
+			unit::ttime{static_cast<unit::ttime::type>(states_.size())}};
 
 	/* Update the positions of all celestial bodies. */
 	for(const auto& sun : universe_.suns()) {
 		state.suns.emplace_back(sun.id(), sun.position(state.time));
+		sun_positions_[sun.id()] = sun.grid(state.time);
 	}
 	for(const auto& moon : universe_.moons()) {
 		state.moons.emplace_back(moon.id(), moon.position(state.time));
+		moon_positions_[moon.id()] = moon.grid(state.time);
 	}
 
 	/* Add the state to the list of states. */
 	states_.push_back(std::move(state));
+
+	check_collisions();
+}
+
+void tsimulator::check_collisions() const
+{
+	TRACE;
+
+	VALIDATE(universe_.suns().size() == sun_positions_.size());
+	VALIDATE(universe_.moons().size() == moon_positions_.size());
+
+	/*
+	 * Test all suns against other suns and all moons.
+	 *
+	 * The algorithm tries to make the minimum of comparisions:
+	 * - Iterate over all suns.
+	 *   - Test them against the other suns after us in the collection.
+	 *   - Test against all moons.
+	 */
+	for(auto s_itor = universe_.suns().begin(), end = universe_.suns().end();
+		s_itor != end;
+		++s_itor) {
+
+		const auto& sun = sun_positions_.at(s_itor->id());
+		for(auto t_itor = s_itor + 1; t_itor != end; ++t_itor) {
+
+			const auto& test = sun_positions_.at(t_itor->id());
+			if(grid::intersects(sun, test)) {
+				throw tcollision{};
+			}
+		}
+
+		for(const auto& moon : universe_.moons()) {
+			const auto& test = moon_positions_.at(moon.id());
+			if(grid::intersects(sun, test)) {
+				throw tcollision{};
+			}
+		}
+	}
+
+	/*
+	 * Test all moons against other moons.
+	 *
+	 * The algorithm tries to make the minimum of comparisions:
+	 * - Iterate over all moons.
+	 *   - Test them against the other moons after us in the collection.
+	 */
+	for(auto m_itor = universe_.moons().begin(), end = universe_.moons().end();
+		m_itor != end;
+		++m_itor) {
+
+		const auto& moon = moon_positions_.at(m_itor->id());
+		for(auto t_itor = m_itor + 1; t_itor != end; ++t_itor) {
+
+			const auto& test = moon_positions_.at(t_itor->id());
+			if(grid::intersects(moon, test)) {
+				throw tcollision{};
+			}
+		}
+	}
 }
 
 } // namespace simulation
