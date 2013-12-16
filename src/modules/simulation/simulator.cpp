@@ -36,6 +36,7 @@ tsimulator::tsimulator(celestial::tuniverse&& universe__)
 
 tsimulator::tsimulator(const boost::property_tree::ptree& simulator)
 	: universe_{celestial::tuniverse::load(simulator.get_child("universe"))}
+	, collided_{simulator.get<bool>("collided")}
 {
 	TRACE;
 
@@ -90,6 +91,7 @@ boost::property_tree::ptree tsimulator::store() const
 	result.push_back(boost::property_tree::ptree::value_type{
 			"universe", universe_.store()});
 
+	result.put("collided", collided_);
 	boost::property_tree::ptree states;
 	for(const auto& state : states_) {
 		states.push_back(boost::property_tree::ptree::value_type{
@@ -116,6 +118,10 @@ void tsimulator::store(const std::string& filename) const
 void tsimulator::run(const unit::ttime seconds)
 {
 	TRACE_PARAMETERS(seconds);
+
+	if(collided_) {
+		throw tcollision{};
+	}
 
 	if(states_.empty()) {
 		update_positions();
@@ -150,7 +156,7 @@ void tsimulator::update_positions()
 	check_collisions();
 }
 
-void tsimulator::check_collisions() const
+void tsimulator::check_collisions()
 {
 	TRACE;
 
@@ -174,6 +180,7 @@ void tsimulator::check_collisions() const
 
 			const auto& test = sun_positions_.at(t_itor->id());
 			if(grid::intersects(sun, test)) {
+				collided_ = true;
 				throw tcollision{};
 			}
 		}
@@ -181,6 +188,7 @@ void tsimulator::check_collisions() const
 		for(const auto& moon : universe_.moons()) {
 			const auto& test = moon_positions_.at(moon.id());
 			if(grid::intersects(sun, test)) {
+				collided_ = true;
 				throw tcollision{};
 			}
 		}
@@ -202,6 +210,7 @@ void tsimulator::check_collisions() const
 
 			const auto& test = moon_positions_.at(t_itor->id());
 			if(grid::intersects(moon, test)) {
+				collided_ = true;
 				throw tcollision{};
 			}
 		}

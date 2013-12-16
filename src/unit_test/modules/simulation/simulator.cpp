@@ -170,6 +170,34 @@ struct tunit_test
 				lib::raster(simulation.states_.back().moons[0].position),
 				lib::raster(simulation.states_.back().moons[1].position));
 	}
+
+	/***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****/
+
+	static void throw_collision()
+	{
+		celestial::tuniverse universe;
+		universe.add(celestial::tsun{
+				"sun1", geometry::tcartesian{0_m, 0_m, 0_m},
+				geometry::torbit{geometry::tpolar{0.1_m, 0._deg, 90._deg}, 4_s,
+								 0_s},
+				0.001_m, 1_J});
+
+		universe.add(celestial::tsun{
+				"sun2", geometry::tcartesian{0_m, 0_m, 0_m},
+				geometry::torbit{geometry::tpolar{0.1_m, 90._deg, 90._deg}, 1_s,
+								 0_s},
+				0.001_m, 1_J});
+
+		tsimulator simulation(std::move(universe));
+		BOOST_CHECK_EQUAL(simulation.collided_, false);
+		simulation.run(0_s);
+		BOOST_CHECK_EQUAL(simulation.collided_, false);
+
+		BOOST_CHECK_THROW(simulation.run(1_s), tsimulator::tcollision);
+		BOOST_CHECK_EQUAL(simulation.collided_, true);
+		BOOST_CHECK_THROW(simulation.run(0_s), tsimulator::tcollision);
+		BOOST_CHECK_EQUAL(simulation.collided_, true);
+	}
 };
 
 /***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****/
@@ -180,4 +208,5 @@ BOOST_AUTO_TEST_CASE(test_modules_simulation_simulator)
 	tunit_test::sun_collision();
 	tunit_test::sun_moon_collision();
 	tunit_test::moon_moon_collision();
+	tunit_test::throw_collision();
 }

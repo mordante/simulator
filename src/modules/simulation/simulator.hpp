@@ -157,6 +157,14 @@ private:
 	 */
 	celestial::tuniverse universe_;
 
+	/**
+	 * Indication whether the universe already had a collision.
+	 *
+	 * Since collisions are fatal it is not possible to run a universe that had
+	 * a collision.
+	 */
+	bool collided_{false};
+
 	/** The various states in the simulation. */
 	std::vector<detail::tstate> states_{};
 
@@ -201,7 +209,7 @@ private:
 	 * @throw tcollision          When a collision between two (or more)
 	 *                            celestial bodies occur.
 	 */
-	void check_collisions() const;
+	void check_collisions();
 };
 
 } // namespace simulation
