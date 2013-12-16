@@ -33,6 +33,17 @@ include(modules/unit/CMakeLists.txt)
 
 ########### Programs. ###############
 
+### Simulator
+
+add_executable(simulator
+	simulator/simulator.cpp
+	simulator/options.cpp
+)
+
+target_link_libraries(simulator
+	simulation
+)
+
 ###Unit test
 
 if(MAKE_UNIT_TESTS)
