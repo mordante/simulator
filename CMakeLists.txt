@@ -10,6 +10,7 @@ find_package(Boost
 	1.55
 	REQUIRED
 	COMPONENTS
+		date_time
 		log
 		system
 		thread

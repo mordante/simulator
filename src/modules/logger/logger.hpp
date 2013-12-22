@@ -23,17 +23,12 @@
  */
 
 #include "modules/logger/module.hpp"
+#include "modules/logger/state.hpp"
 
 #ifdef ENABLE_TRACE_LOGGER
 #include <boost/preprocessor/variadic/to_seq.hpp>
 #include <boost/preprocessor/seq/for_each.hpp>
 #endif
-#include <boost/preprocessor/repetition/enum_binary_params.hpp>
-#include <boost/preprocessor/repetition/enum_params.hpp>
-#include <boost/preprocessor/repetition/repeat_from_to.hpp>
-
-#include <boost/log/trivial.hpp>
-#include <boost/log/common.hpp>
 
 namespace logger
 {
@@ -41,6 +36,25 @@ namespace logger
 /** Helper class to do the actual logging for a module. */
 class tlogger final
 {
+	/***** ***** ***** ***** Types. ***** ***** ***** *****/
+
+	/** Small helper struct for the logging engine. */
+	struct tproxy
+	{
+		~tproxy();
+
+		boost::log::record_ostream& stream()
+		{
+			return stream_;
+		}
+
+		boost::log::record record_{record_constructor()};
+		boost::log::record_ostream stream_{record_};
+
+	private:
+		boost::log::record record_constructor();
+	};
+
 public:
 	/***** Constructors, assign operators, destructor. *****/
 
@@ -74,14 +88,11 @@ public:
 		return module_.get_severity() >= severity_;
 	}
 
+
+	/***** ***** ***** ***** Operations. ***** ***** ***** *****/
+
 	/**
 	 * The log function.
-	 *
-	 * There are several overloads for more parameters, they all behave the
-	 * same in logging all their parameters.
-	 *
-	 * @note The number of log functions is determined by the number required
-	 * by the compiler.
 	 *
 	 * @note We expect that
 	 * @code VALIDATE(static_cast<bool>(*this)); @endcode
@@ -91,46 +102,23 @@ public:
 	 * allows the logger to be used when the @ref logger::tseverity doesn't
 	 * hold true.
 	 *
-	 * @tparam T0                 The type of the item to be logged.
+	 * @tparam Pack               The type of the items to be logged.
 	 *
-	 * @param p0                  The item to be logged.
+	 * @param pack                The items to be logged.
 	 */
-	template <class T0>
-	void log(const T0& p0)
+	template <class... Pack>
+	void log(Pack&&... pack)
 	{
-		BOOST_LOG_SEV(stream(), severity_) << p0;
+		tproxy proxy;
+		header_writer()(proxy.stream(), severity_);
+		log(proxy, std::forward<Pack>(pack)...);
 	}
 
-	template <class T0, class T1>
-	void log(const T0& p0, const T1& p1)
-	{
-		BOOST_LOG_SEV(stream(), severity_) << p0 << p1;
-	}
-#if 1
-#define BUILD_LOG_FUNCTION_SHIFT(UNUSED, N, PARAM) << PARAM##N
+	/** The zero parameter log function is not allowed. */
+	void log() = delete;
 
-#define BUILD_LOG_FUNCTION(UNUSED1, N, UNUSED2)                                \
-	template <BOOST_PP_ENUM_PARAMS(N, class T)>                                \
-	inline void log(BOOST_PP_ENUM_BINARY_PARAMS(N, const T, &p))               \
-	{                                                                          \
-		BOOST_LOG_SEV(stream(), severity_)                                     \
-				BOOST_PP_REPEAT(N, BUILD_LOG_FUNCTION_SHIFT, p);               \
-	}
 
-#define BUILD_LOG_FUNCTION_MAX 24
-
-	/**
-	 * Generates the log functions.
-	 *
-	 * It generates them for 3 to BUILD_LOG_FUNCTION_MAX - 1 parameters.
-	 */
-	BOOST_PP_REPEAT_FROM_TO(3, BUILD_LOG_FUNCTION_MAX, BUILD_LOG_FUNCTION, )
-
-#undef BUILD_LOG_FUNCTION_MAX
-#undef BUILD_LOG_FUNCTION
-#undef BUILD_LOG_FUNCTION_SHIFT
-#endif
-
+	/***** ***** ***** ***** Members. ***** ***** ***** *****/
 private:
 	/**
 	 * The logger's module.
@@ -142,8 +130,38 @@ private:
 	/** The severity of the messages to write. */
 	const tseverity severity_;
 
-	/** The stream to log to. */
-	static boost::log::sources::severity_logger_mt<tseverity>& stream();
+
+	/***** ***** ***** ***** Operations. ***** ***** ***** *****/
+
+	/**
+	 * The log function for one parameter.
+	 *
+	 * This is an internal function used for the real logging.
+	 *
+	 * @param proxy               The proxy used to get the output stream.
+	 * @param rhs                 The parameter to write to the log.
+	 */
+	template <class T>
+	void log(tproxy& proxy, T&& rhs)
+	{
+		proxy.stream() << rhs;
+	}
+
+	/**
+	 * The log function for multiple parameter.
+	 *
+	 * This is an internal function used for the real logging.
+	 *
+	 * @param proxy               The proxy used to get the output stream.
+	 * @param rhs                 The parameter to write to the log.
+	 * @param pack                The other items to be logged.
+	 */
+	template <class T, class... Pack>
+	void log(tproxy& proxy, T&& rhs, Pack&&... pack)
+	{
+		proxy.stream() << rhs;
+		log(proxy, std::forward<Pack>(pack)...);
+	}
 };
 
 } // namespace logger

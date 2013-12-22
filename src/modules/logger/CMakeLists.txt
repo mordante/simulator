@@ -15,11 +15,13 @@ add_library(logger STATIC
 	modules/logger/logger.cpp
 	modules/logger/module.cpp
 	modules/logger/severity.cpp
+	modules/logger/state.cpp
 )
 
 target_link_libraries(logger
 	exception
 	pthread
+	${Boost_DATE_TIME_LIBRARY}
 	${Boost_LOG_LIBRARY}
 	${Boost_SYSTEM_LIBRARY}
 	${Boost_THREAD_LIBRARY}

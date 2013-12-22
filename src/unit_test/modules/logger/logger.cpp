@@ -33,6 +33,11 @@ public:
 	{
 		TRACE;
 
+		/* Remove default logging settings. */
+		boost::log::core::get()->remove_sink(sink());
+		header_writer() = header_writer_null;
+
+		/* Set our logging settings. */
 		sink_->locked_backend()->add_stream(stream_);
 		boost::log::core::get()->add_sink(sink_);
 	}
@@ -41,7 +46,12 @@ public:
 	{
 		TRACE;
 
+		/* Remove our logging settings. */
 		boost::log::core::get()->remove_sink(sink_);
+
+		/* Set default logging settings. */
+		boost::log::core::get()->add_sink(sink());
+		header_writer() = old_header_;
 	}
 
 	std::stringstream& stream()
@@ -54,6 +64,10 @@ private:
 
 	boost::shared_ptr<std::stringstream> stream_{boost::make_shared
 												 <std::stringstream>()};
+
+	std::function
+			<void(boost::log::record_ostream&, const tseverity)> old_header_{
+					header_writer()};
 };
 
 static void log()

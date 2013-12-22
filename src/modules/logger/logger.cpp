@@ -14,12 +14,21 @@
 
 #include "modules/logger/logger.hpp"
 
+#include "lib/exception/validate.tpp"
+
 namespace logger
 {
 
-boost::log::sources::severity_logger_mt<tseverity>& tlogger::stream()
+tlogger::tproxy::~tproxy()
 {
-	static boost::log::sources::severity_logger_mt<tseverity> result;
+	stream_.flush();
+	log_source().push_record(std::move(record_));
+}
+
+boost::log::record tlogger::tproxy::record_constructor()
+{
+	boost::log::record result{log_source().open_record()};
+	VALIDATE(result);
 	return result;
 }
 
