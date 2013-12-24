@@ -23,6 +23,7 @@
  */
 
 #include "modules/celestial/moon.hpp"
+#include "modules/celestial/planet.hpp"
 #include "modules/celestial/sun.hpp"
 
 #include <vector>
@@ -31,7 +32,7 @@ namespace celestial
 {
 
 /**
- * The universe is a container for all suns and moons.
+ * The universe is a container for all suns, moons and planets.
  */
 struct tuniverse
 {
@@ -121,12 +122,24 @@ public:
 	 */
 	void add(tmoon&& moon);
 
+	/**
+	 * Add a new planet to the universe.
+	 *
+	 * @pre                       @p planet.id() is unique for all objects in
+	 *                            @ref planets_.
+	 *
+	 * @param planet              The planet to add (move) to the universe.
+	 */
+	void add(tplanet&& planet);
+
 
 	/***** ***** ***** ***** Setters and getters. ***** ***** ***** *****/
 
 	const std::vector<tsun>& suns() const;
 
 	const std::vector<tmoon>& moons() const;
+
+	const std::vector<tplanet>& planets() const;
 
 
 	/***** ***** ***** ***** Members. ***** ***** ***** *****/
@@ -136,6 +149,9 @@ private:
 
 	/** Contains the moons in the universe. */
 	std::vector<tmoon> moons_{};
+
+	/** Contains the planets in the universe. */
+	std::vector<tplanet> planets_{};
 };
 
 } // namespace celestial

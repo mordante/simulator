@@ -19,6 +19,16 @@
  * The celestial module contains the universe and its celestial bodies:
  * * suns
  * * moons
+ * * planets
+ *
+ *
+ * @section celestial_module_planet Planet
+ *
+ * A planet is a static object in a universe. It has a basic grid, with a
+ * length and a width. On this grid the planet is build. That means things
+ * falling off the planet on the grid become part of the planet, parts not on
+ * the grid disappear. All objects on the planet are relative to the origin of
+ * the planet, so the universe coordinates of an object need to add the origin.
  *
  *
  * @section celestial_module_moon Moon

@@ -52,6 +52,7 @@ if(MAKE_UNIT_TESTS)
 		unit_test/exception.cpp
 		unit_test/lib/utility/concatenate.cpp
 		unit_test/modules/celestial/moon.cpp
+		unit_test/modules/celestial/planet.cpp
 		unit_test/modules/celestial/sun.cpp
 		unit_test/modules/geometry/coordinate.cpp # For both cartesian and polar.
 		unit_test/modules/geometry/orbit.cpp

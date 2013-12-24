@@ -36,6 +36,11 @@ tuniverse::tuniverse(const boost::property_tree::ptree& universe)
 	for(const auto& moon : moons) {
 		add(tmoon::load(moon.second));
 	}
+
+	boost::property_tree::ptree planets{universe.get_child("planets")};
+	for(const auto& planet : planets) {
+		add(tplanet::load(planet.second));
+	}
 }
 
 tuniverse tuniverse::load(const boost::property_tree::ptree& universe)
@@ -75,6 +80,14 @@ boost::property_tree::ptree tuniverse::store() const
 	}
 	result.push_back(boost::property_tree::ptree::value_type{"moons", moons});
 
+	boost::property_tree::ptree planets;
+	for(const auto& planet : planets_) {
+		planets.push_back(boost::property_tree::ptree::value_type{
+				"planet", planet.store()});
+	}
+	result.push_back(
+			boost::property_tree::ptree::value_type{"planets", planets});
+
 	return result;
 }
 
@@ -112,6 +125,24 @@ void tuniverse::add(tmoon&& moon)
 	moons_.push_back(std::move(moon));
 }
 
+void tuniverse::add(tplanet&& planet)
+{
+	TRACE;
+
+	if(std::any_of(
+			   planets_.begin(), planets_.end(), [&planet](const tplanet& m) {
+				   return m.id() == planet.id();
+			   })) {
+
+		THROW_E(invalid_value,
+				"Adding duplicates is not allowed. A planet with id »",
+				planet.id(),
+				"« already exists.");
+	}
+
+	planets_.push_back(std::move(planet));
+}
+
 const std::vector<tsun>& tuniverse::suns() const
 {
 	TRACE;
@@ -124,6 +155,13 @@ const std::vector<tmoon>& tuniverse::moons() const
 	TRACE;
 
 	return moons_;
+}
+
+const std::vector<tplanet>& tuniverse::planets() const
+{
+	TRACE;
+
+	return planets_;
 }
 
 } // namespace celestial

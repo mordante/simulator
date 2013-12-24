@@ -13,6 +13,7 @@
 # - Finish the code.
 
 add_library(celestial STATIC
+	modules/celestial/planet.cpp
 	modules/celestial/sun.cpp
 	modules/celestial/moon.cpp
 	modules/celestial/universe.cpp
