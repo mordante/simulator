@@ -27,6 +27,7 @@ include(modules/celestial/CMakeLists.txt)
 include(modules/logger/CMakeLists.txt)
 include(modules/geometry/CMakeLists.txt)
 include(modules/grid/CMakeLists.txt)
+include(modules/math/CMakeLists.txt)
 include(modules/simulation/CMakeLists.txt)
 include(modules/unit/CMakeLists.txt)
 
@@ -62,6 +63,10 @@ if(MAKE_UNIT_TESTS)
 		unit_test/modules/grid/sphere.cpp
 		unit_test/modules/logger/logger.cpp
 		unit_test/modules/logger/module.cpp
+		unit_test/modules/math/vector.cpp
+		unit_test/modules/math/vector/arithmetic.cpp
+		unit_test/modules/math/vector/comparison.cpp
+		unit_test/modules/math/vector/utility.cpp
 		unit_test/modules/simulation/moon.cpp
 		unit_test/modules/simulation/simulator.cpp
 		unit_test/modules/simulation/sun.cpp
