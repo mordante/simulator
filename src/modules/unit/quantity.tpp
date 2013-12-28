@@ -47,7 +47,7 @@ struct tquantity
 
 	/***** Constructors, assign operators, destructor. *****/
 
-	tquantity() = delete;
+	tquantity() = default;
 
 	/**
 	 * Constructor.
