@@ -256,7 +256,7 @@ operator*(const tquantity<LHS_U, LHS_T>& lhs,
 }
 
 /**
- * The @c operator* for a @ref unit::tquantity objects with a value.
+ * The @c operator* for a @ref unit::tquantity object with a value.
  *
  * This is a scaling operation for the @p lhs object.
  *
@@ -277,7 +277,7 @@ operator*(tquantity<U, T> lhs, const T& rhs) noexcept(noexcept(lhs *= rhs))
 }
 
 /**
- * The @c operator* for a @ref unit::tquantity objects with a value.
+ * The @c operator* for a @ref unit::tquantity object with a value.
  *
  * This is a scaling operation for the @p rhs object.
  *
