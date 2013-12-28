@@ -278,15 +278,38 @@ divide()
 {
 	TRACE;
 
-	using INPUT1 = tunit<3, 6, 12, 24, 48>;
-	using INPUT2 = tunit<1, 2, 4, 8, 16>;
-	using RESULT = tunit<2, 4, 8, 16, 32>;
+	{
+		using INPUT = tunit<1, 2, 4, 8, 16>;
+		using RESULT = INPUT;
 
-	const tquantity<INPUT1, T> q1{-8};
-	const tquantity<INPUT2, T> q2{4};
-	const tquantity<RESULT, T> qr{-2};
+		tquantity<INPUT, T> q1{-8};
+		q1 /= 4;
+		const tquantity<RESULT, T> qr{-2};
 
-	BOOST_CHECK_EQUAL(q1 / q2, qr);
+		BOOST_CHECK_EQUAL(q1, qr);
+	}
+
+	{
+		using INPUT1 = tunit<3, 6, 12, 24, 48>;
+		using INPUT2 = tunit<1, 2, 4, 8, 16>;
+		using RESULT = tunit<2, 4, 8, 16, 32>;
+
+		const tquantity<INPUT1, T> q1{-8};
+		const tquantity<INPUT2, T> q2{4};
+		const tquantity<RESULT, T> qr{-2};
+
+		BOOST_CHECK_EQUAL(q1 / q2, qr);
+	}
+
+	{
+		using INPUT = tunit<1, 2, 4, 8, 16>;
+		using RESULT = INPUT;
+
+		const tquantity<INPUT, T> q1{-8};
+		const tquantity<RESULT, T> qr{-2};
+
+		BOOST_CHECK_EQUAL(q1 / 4, qr);
+	}
 }
 
 template <class T>
@@ -295,15 +318,17 @@ divide()
 {
 	TRACE;
 
-	using INPUT1 = tunit<3, 6, 12, 24, 48>;
-	using INPUT2 = tunit<1, 2, 4, 8, 16>;
-	using RESULT = tunit<2, 4, 8, 16, 32>;
+	{
+		using INPUT1 = tunit<3, 6, 12, 24, 48>;
+		using INPUT2 = tunit<1, 2, 4, 8, 16>;
+		using RESULT = tunit<2, 4, 8, 16, 32>;
 
-	const tquantity<INPUT1, T> q1{-1.25 * 2.5};
-	const tquantity<INPUT2, T> q2{-1.25};
-	const tquantity<RESULT, T> qr{2.5};
+		const tquantity<INPUT1, T> q1{-1.25 * 2.5};
+		const tquantity<INPUT2, T> q2{-1.25};
+		const tquantity<RESULT, T> qr{2.5};
 
-	BOOST_CHECK_EQUAL(q1 / q2, qr);
+		BOOST_CHECK_EQUAL(q1 / q2, qr);
+	}
 }
 
 /***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****/

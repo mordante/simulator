@@ -302,6 +302,32 @@ operator*(const T& lhs, tquantity<U, T> rhs) noexcept(noexcept(rhs *= lhs))
 /***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****/
 
 /**
+ * The @c operator/= for a @ref unit::tquantity object with a value.
+ *
+ * This is a scaling operation for the @p lhs object.
+ *
+ * @tparam U                      The type of @ref unit::tquantity::unit.
+ * @tparam LHS_T                  The type of @ref unit::tquantity::type for the
+ *                                @p lhs parameter.
+ * @tparam RHS_T                  The type of @ref unit::tquantity::type for the
+ *                                @p rhs parameter.
+ *
+ * @param rhs                     The right hand side object.
+ * @param lhs                     The left hand side value.
+ *
+ * @returns                       @p lhs after dividin it by @p rhs.
+ */
+template <class U, class LHS_T, class RHS_T>
+inline constexpr tquantity<U, LHS_T>&
+operator/=(tquantity<U, LHS_T>& lhs,
+		   const RHS_T
+		   & rhs) noexcept(noexcept(lhs.value /= static_cast<LHS_T>(rhs)))
+{
+	lhs.value /= static_cast<LHS_T>(rhs);
+	return lhs;
+}
+
+/**
  * The @c operator/ for two @ref unit::tquantity objects.
  *
  * @tparam LHS_U                  The type of @ref unit::tquantity::unit for the
@@ -330,6 +356,31 @@ operator/(const tquantity<LHS_U, LHS_T>& lhs,
 
 	return tquantity<tsubtract<LHS_U, RHS_U>, type>{
 			static_cast<type>(lhs.value) / static_cast<type>(rhs.value)};
+}
+
+/**
+ * The @c operator/ for a @ref unit::tquantity object with a value.
+ *
+ * This is a scaling operation for the @p lhs object.
+ *
+ * @tparam U                      The type of @ref unit::tquantity::unit.
+ * @tparam LHS_T                  The type of @ref unit::tquantity::type for the
+ *                                @p lhs parameter.
+ * @tparam RHS_T                  The type of @ref unit::tquantity::type for the
+ *                                @p rhs parameter.
+ *
+ * @param rhs                     The right hand side object.
+ * @param lhs                     The left hand side value.
+ *
+ * @returns                       The object created by dividing @p lhs by
+ *                                @p rhs.
+ */
+template <class U, class LHS_T, class RHS_T>
+inline constexpr tquantity<U, LHS_T>
+operator/(tquantity<U, LHS_T> lhs,
+		  const RHS_T& rhs) noexcept(noexcept(lhs /= rhs))
+{
+	return lhs /= rhs;
 }
 
 /***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****/
