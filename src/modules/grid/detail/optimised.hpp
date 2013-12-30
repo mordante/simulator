@@ -39,4 +39,3 @@ std::vector<tpoint> line_optimised(tpoint begin, tpoint end);
 } // namespace grid
 
 #endif
-

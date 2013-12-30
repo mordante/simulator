@@ -25,8 +25,8 @@ using namespace logger;
 
 class tstream
 {
-	using text_sink = boost::log::sinks::synchronous_sink
-			<boost::log::sinks::text_ostream_backend>;
+	using text_sink = boost::log::sinks::
+			synchronous_sink<boost::log::sinks::text_ostream_backend>;
 
 public:
 	tstream()
@@ -62,12 +62,11 @@ public:
 private:
 	boost::shared_ptr<text_sink> sink_{boost::make_shared<text_sink>()};
 
-	boost::shared_ptr<std::stringstream> stream_{boost::make_shared
-												 <std::stringstream>()};
+	boost::shared_ptr<std::stringstream> stream_{
+			boost::make_shared<std::stringstream>()};
 
-	std::function
-			<void(boost::log::record_ostream&, const tseverity)> old_header_{
-					header_writer()};
+	std::function<void(boost::log::record_ostream&, const tseverity)>
+	old_header_{header_writer()};
 };
 
 static void log()

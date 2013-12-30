@@ -39,4 +39,3 @@ std::vector<tpoint> line_basic(tpoint begin, tpoint end);
 } // namespace grid
 
 #endif
-

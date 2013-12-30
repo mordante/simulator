@@ -25,8 +25,8 @@ namespace logger
 {
 
 /** Helper typedef, not really used. */
-using tsink = boost::log::sinks::synchronous_sink
-		<boost::log::sinks::text_ostream_backend>;
+using tsink = boost::log::sinks::
+		synchronous_sink<boost::log::sinks::text_ostream_backend>;
 
 /**
  * The default sink used in the logger.

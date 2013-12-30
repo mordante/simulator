@@ -62,9 +62,9 @@ static simulation::tsimulator load()
 							 256_s},
 			0.001_m});
 
-	universe.add(celestial::tplanet{
-			"The continent", geometry::tcartesian{-0.2_m, -0.2_m, 0_m},
-			0.4_m,			 0.4_m});
+	universe.add(celestial::tplanet{"The continent",
+									geometry::tcartesian{-0.2_m, -0.2_m, 0_m},
+									0.4_m, 0.4_m});
 
 	return simulation::tsimulator(std::move(universe));
 }

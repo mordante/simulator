@@ -190,8 +190,12 @@ static std::vector<tpoint> line(tpoint begin, tint dx, tint dy, tint dz)
 				  tupdate::one,
 				  z_step,
 				  tupdate::zero>,
-			 line
-			 <x_step, tupdate::one, y_step, tupdate::one, z_step, tupdate::one>,
+			 line<x_step,
+				  tupdate::one,
+				  y_step,
+				  tupdate::one,
+				  z_step,
+				  tupdate::one>,
 			 line<x_step,
 				  tupdate::one,
 				  y_step,
@@ -296,9 +300,8 @@ std::vector<tpoint> line_optimised(tpoint begin, tpoint end)
 	using tfunction = std::vector<tpoint>(*)(tpoint, tint, tint, tint);
 
 	static constexpr std::array<tfunction, 8> functions{
-			{line<-1, -1, -1>, line<-1, -1, 1>, line<-1, 1, -1>,
-			 line<-1, 1, 1>,   line<1, -1, -1>, line<1, -1, 1>,
-			 line<1, 1, -1>,   line<1, 1, 1>}};
+			{line<-1, -1, -1>, line<-1, -1, 1>, line<-1, 1, -1>, line<-1, 1, 1>,
+			 line<1, -1, -1>, line<1, -1, 1>, line<1, 1, -1>, line<1, 1, 1>}};
 
 	const bool index_x{dx >= 0};
 	const bool index_y{dy >= 0};

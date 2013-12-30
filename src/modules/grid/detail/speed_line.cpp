@@ -33,10 +33,9 @@ using namespace grid;
  * The file speed.csv is taken with a value of 10'000'000 using -O2 and took
  * about 194 minutes.
  */
-static constexpr int reps = 100'000;
-
-static std::chrono::high_resolution_clock::duration
-time(const int repetitions, const std::function<void()>& functor)
+static constexpr int reps
+		= 100'000; static std::chrono::high_resolution_clock::duration time(
+				const int repetitions, const std::function<void()> & functor)
 {
 	auto start = std::chrono::high_resolution_clock::now();
 
@@ -101,5 +100,5 @@ int main()
 		test(reps / i, tpoint{0, 0, 0}, tpoint{100 * i, 100 * i, 50 * i});
 		test(reps / i, tpoint{0, 0, 0}, tpoint{100 * i, 100 * i, 75 * i});
 		test(reps / i, tpoint{0, 0, 0}, tpoint{100 * i, 100 * i, 100 * i});
-	}
+}
 }

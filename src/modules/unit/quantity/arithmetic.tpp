@@ -48,8 +48,8 @@ namespace unit
 template <class U, class T>
 inline constexpr tquantity<U, T>&
 operator+=(tquantity<U, T>& lhs,
-		   const tquantity
-		   <U, T>& rhs) noexcept(noexcept(lhs.value += rhs.value))
+		   const tquantity<U, T>& rhs) noexcept(noexcept(lhs.value
+														 += rhs.value))
 {
 	lhs.value += rhs.value;
 	return lhs;
@@ -93,8 +93,9 @@ operator+(tquantity<U, T> lhs,
  * @returns                       @p lhs after increasing its value by @c 1.
  */
 template <class U, class T>
-inline constexpr typename std::enable_if
-		<std::numeric_limits<T>::min_exponent == 0, tquantity<U, T>&>::type
+inline constexpr typename std::enable_if<std::numeric_limits<T>::min_exponent
+										 == 0,
+										 tquantity<U, T>&>::type
 operator++(tquantity<U, T>& lhs) noexcept(noexcept(++lhs.value))
 {
 	++lhs.value;
@@ -119,8 +120,8 @@ operator++(tquantity<U, T>& lhs) noexcept(noexcept(++lhs.value))
 template <class U, class T>
 inline constexpr tquantity<U, T>&
 operator-=(tquantity<U, T>& lhs,
-		   const tquantity
-		   <U, T>& rhs) noexcept(noexcept(lhs.value -= rhs.value))
+		   const tquantity<U, T>& rhs) noexcept(noexcept(lhs.value
+														 -= rhs.value))
 {
 	lhs.value -= rhs.value;
 	return lhs;
@@ -186,8 +187,8 @@ operator-(tquantity<U, T> quantity) noexcept(noexcept(-quantity.value))
 template <class U, class T>
 inline constexpr tquantity<U, T>&
 operator*=(tquantity<U, T>& lhs,
-		   const tquantity
-		   <NONE, T>& rhs) noexcept(noexcept(lhs.value *= rhs.value))
+		   const tquantity<NONE, T>& rhs) noexcept(noexcept(lhs.value
+															*= rhs.value))
 {
 	lhs.value *= rhs.value;
 	return lhs;
@@ -213,8 +214,8 @@ operator*=(tquantity<U, T>& lhs,
 template <class U, class LHS_T, class RHS_T>
 inline constexpr tquantity<U, LHS_T>&
 operator*=(tquantity<U, LHS_T>& lhs,
-		   const RHS_T
-		   & rhs) noexcept(noexcept(lhs.value *= static_cast<RHS_T>(rhs)))
+		   const RHS_T& rhs) noexcept(noexcept(lhs.value
+											   *= static_cast<RHS_T>(rhs)))
 {
 	lhs.value *= static_cast<LHS_T>(rhs);
 	return lhs;
@@ -239,15 +240,15 @@ operator*=(tquantity<U, LHS_T>& lhs,
  *                                @p rhs.
  */
 template <class LHS_U, class LHS_T, class RHS_U, class RHS_T>
-inline constexpr tquantity
-		<tadd<LHS_U, RHS_U>, typename std::common_type<LHS_T, RHS_T>::type>
+inline constexpr tquantity<tadd<LHS_U, RHS_U>,
+						   typename std::common_type<LHS_T, RHS_T>::type>
 		/*
 		 * Formatter fails; the * is an multiplication not a pointer.
 		 * Look like http://llvm.org/bugs/show_bug.cgi?id=16500
 		 */
 operator*(const tquantity<LHS_U, LHS_T>& lhs,
-		  const tquantity
-		  <RHS_U, RHS_T>& rhs) noexcept(noexcept(lhs.value* rhs.value))
+		  const tquantity<RHS_U, RHS_T>& rhs) noexcept(noexcept(lhs.value* rhs
+																		.value))
 {
 	using type = typename std::common_type<LHS_T, RHS_T>::type;
 
@@ -320,8 +321,8 @@ operator*(const T& lhs, tquantity<U, T> rhs) noexcept(noexcept(rhs *= lhs))
 template <class U, class LHS_T, class RHS_T>
 inline constexpr tquantity<U, LHS_T>&
 operator/=(tquantity<U, LHS_T>& lhs,
-		   const RHS_T
-		   & rhs) noexcept(noexcept(lhs.value /= static_cast<LHS_T>(rhs)))
+		   const RHS_T& rhs) noexcept(noexcept(lhs.value
+											   /= static_cast<LHS_T>(rhs)))
 {
 	lhs.value /= static_cast<LHS_T>(rhs);
 	return lhs;
@@ -346,11 +347,11 @@ operator/=(tquantity<U, LHS_T>& lhs,
  *                                @p rhs.
  */
 template <class LHS_U, class LHS_T, class RHS_U, class RHS_T>
-inline constexpr tquantity
-		<tsubtract<LHS_U, RHS_U>, typename std::common_type<LHS_T, RHS_T>::type>
+inline constexpr tquantity<tsubtract<LHS_U, RHS_U>,
+						   typename std::common_type<LHS_T, RHS_T>::type>
 operator/(const tquantity<LHS_U, LHS_T>& lhs,
-		  const tquantity
-		  <RHS_U, RHS_T>& rhs) noexcept(noexcept(lhs.value / rhs.value))
+		  const tquantity<RHS_U, RHS_T>& rhs) noexcept(noexcept(lhs.value
+																/ rhs.value))
 {
 	using type = typename std::common_type<LHS_T, RHS_T>::type;
 
@@ -405,8 +406,9 @@ namespace detail
  *                                dividing @p lhs by @p rhs.
  */
 template <class T>
-inline constexpr typename std::enable_if
-		<std::numeric_limits<T>::min_exponent == 0, T>::type
+inline constexpr typename std::enable_if<std::numeric_limits<T>::min_exponent
+										 == 0,
+										 T>::type
 mod(const T& lhs, const T& rhs) noexcept(noexcept(lhs % rhs))
 {
 	return lhs % rhs;
@@ -427,8 +429,9 @@ mod(const T& lhs, const T& rhs) noexcept(noexcept(lhs % rhs))
  *                                dividing @p lhs by @p rhs.
  */
 template <class T>
-inline constexpr typename std::enable_if
-		<std::numeric_limits<T>::min_exponent != 0, T>::type
+inline constexpr typename std::enable_if<std::numeric_limits<T>::min_exponent
+										 != 0,
+										 T>::type
 mod(const T& lhs, const T& rhs) noexcept(noexcept(fmod(lhs, rhs)))
 {
 	return fmod(lhs, rhs);
@@ -451,8 +454,8 @@ mod(const T& lhs, const T& rhs) noexcept(noexcept(fmod(lhs, rhs)))
 template <class U, class T>
 inline constexpr tquantity<U, T>
 operator%(const tquantity<U, T>& lhs,
-		  const tquantity
-		  <U, T>& rhs) noexcept(noexcept(detail::mod(lhs.value, rhs.value)))
+		  const tquantity<U, T>& rhs) noexcept(noexcept(detail::mod(lhs.value,
+																	rhs.value)))
 {
 	return tquantity<U, T>{detail::mod(lhs.value, rhs.value)};
 }

@@ -111,9 +111,9 @@ static void test_intersection()
 {
 	TRACE;
 
-	const std::vector
-			<tpoint> lhs{tpoint{1, 2, 3}, tpoint{2, 3, 4}, tpoint{3, 4, 5},
-						 tpoint{4, 5, 6}, tpoint{5, 6, 7}};
+	const std::vector<tpoint> lhs{tpoint{1, 2, 3}, tpoint{2, 3, 4},
+								  tpoint{3, 4, 5}, tpoint{4, 5, 6},
+								  tpoint{5, 6, 7}};
 
 	const std::vector<tpoint> zero_matches{tpoint{2, 2, 3}, tpoint{3, 3, 4},
 										   tpoint{4, 4, 5}, tpoint{5, 5, 6},

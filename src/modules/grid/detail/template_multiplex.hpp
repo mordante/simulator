@@ -38,4 +38,3 @@ std::vector<tpoint> line_template_multiplex(tpoint begin, tpoint end);
 } // namespace grid
 
 #endif
-

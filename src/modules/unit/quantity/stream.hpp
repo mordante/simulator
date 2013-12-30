@@ -99,8 +99,8 @@ inline std::ostream& operator<<(std::ostream& ostream,
 template <class T>
 inline constexpr std::ostream& operator<<(
 		std::ostream& ostream,
-		const tquantity
-		<NONE, T>& quantity) noexcept(noexcept(ostream << quantity.value))
+		const tquantity<NONE, T>&
+				quantity) noexcept(noexcept(ostream << quantity.value))
 {
 	return ostream << quantity.value;
 }
@@ -109,8 +109,8 @@ inline constexpr std::ostream& operator<<(
 template <class T>
 inline constexpr std::ostream& operator<<(
 		std::ostream& ostream,
-		const tquantity
-		<N, T>& quantity) noexcept(noexcept(ostream << quantity.value))
+		const tquantity<N, T>& quantity) noexcept(noexcept(ostream
+														   << quantity.value))
 {
 	return ostream << quantity.value << " N";
 }
@@ -119,8 +119,8 @@ inline constexpr std::ostream& operator<<(
 template <class T>
 inline constexpr std::ostream& operator<<(
 		std::ostream& ostream,
-		const tquantity
-		<J, T>& quantity) noexcept(noexcept(ostream << quantity.value))
+		const tquantity<J, T>& quantity) noexcept(noexcept(ostream
+														   << quantity.value))
 {
 	return ostream << quantity.value << " J";
 }

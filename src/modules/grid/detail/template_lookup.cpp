@@ -79,9 +79,8 @@ std::vector<tpoint> line_template_lookup(tpoint begin, tpoint end)
 
 	using tfunction = std::vector<tpoint>(*)(tpoint, tint, tint, tint);
 	static constexpr std::array<tfunction, 8> functions{
-			{line<-1, -1, -1>, line<-1, -1, 1>, line<-1, 1, -1>,
-			 line<-1, 1, 1>,   line<1, -1, -1>, line<1, -1, 1>,
-			 line<1, 1, -1>,   line<1, 1, 1>}};
+			{line<-1, -1, -1>, line<-1, -1, 1>, line<-1, 1, -1>, line<-1, 1, 1>,
+			 line<1, -1, -1>, line<1, -1, 1>, line<1, 1, -1>, line<1, 1, 1>}};
 
 	const bool index_x{x >= 0};
 	const bool index_y{y >= 0};

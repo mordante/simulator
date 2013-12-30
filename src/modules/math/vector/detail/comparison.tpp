@@ -46,8 +46,8 @@ struct tcomparison
 	equal(const tvector<T, N>& lhs,
 		  const tvector<T, N>& rhs) noexcept(noexcept(T{} == T{}))
 	{
-		return lhs.data[I] == rhs.data[I] && tcomparison
-			   <I + 1, T, N>::equal(lhs, rhs);
+		return lhs.data[I] == rhs.data[I]
+			   && tcomparison<I + 1, T, N>::equal(lhs, rhs);
 	}
 
 	static constexpr bool
@@ -55,8 +55,8 @@ struct tcomparison
 		 const tvector<T, N>& rhs) noexcept(noexcept(T{} < T{}))
 	{
 		return lhs.data[I] < rhs.data[I]
-			   || (!(rhs.data[I] < lhs.data[I]) && tcomparison
-				   <I + 1, T, N>::less(lhs, rhs));
+			   || (!(rhs.data[I] < lhs.data[I])
+				   && tcomparison<I + 1, T, N>::less(lhs, rhs));
 	}
 };
 

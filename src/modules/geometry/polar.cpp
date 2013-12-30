@@ -27,7 +27,8 @@ namespace geometry
 {
 
 tpolar::tpolar(const boost::property_tree::ptree& polar)
-	: tpolar(polar.get<unit::tlength>("r"), polar.get<unit::tangle>("theta"),
+	: tpolar(polar.get<unit::tlength>("r"),
+			 polar.get<unit::tangle>("theta"),
 			 polar.get<unit::tangle>("phi"))
 {
 	TRACE;

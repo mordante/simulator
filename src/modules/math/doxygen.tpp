@@ -34,4 +34,3 @@
  * which should lead to better comparison. Since the sizes of the array are
  * expected to be small the generated code should remain compact.
  */
-

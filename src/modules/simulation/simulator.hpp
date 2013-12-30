@@ -38,7 +38,9 @@ public:
 	/***** ***** ***** ***** Types. ***** ***** ***** *****/
 
 	/** Helper struct thrown when two (or more) celestial bodies collide. */
-	struct tcollision {};
+	struct tcollision
+	{
+	};
 
 	/***** Constructors, assign operators, destructor. *****/
 

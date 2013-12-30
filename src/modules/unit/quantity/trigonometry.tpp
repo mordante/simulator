@@ -55,9 +55,9 @@ namespace unit
  *                                @p quantity.
  */
 template <class U, class T>
-inline constexpr typename std::enable_if
-		<std::numeric_limits<T>::min_exponent != 0,
-		 tquantity<tsubtract<U, RAD>, T>>::type
+inline constexpr typename std::enable_if<std::numeric_limits<T>::min_exponent
+										 != 0,
+										 tquantity<tsubtract<U, RAD>, T>>::type
 sin(const tquantity<U, T>& quantity) noexcept(noexcept(sin(quantity.value)))
 {
 	using std::sin;
@@ -85,9 +85,9 @@ sin(const tquantity<U, T>& quantity) noexcept(noexcept(sin(quantity.value)))
  *                                @p quantity.
  */
 template <class U, class T>
-inline constexpr typename std::enable_if
-		<std::numeric_limits<T>::min_exponent != 0,
-		 tquantity<tsubtract<U, RAD>, T>>::type
+inline constexpr typename std::enable_if<std::numeric_limits<T>::min_exponent
+										 != 0,
+										 tquantity<tsubtract<U, RAD>, T>>::type
 cos(const tquantity<U, T>& quantity) noexcept(noexcept(cos(quantity.value)))
 {
 	using std::cos;
@@ -115,9 +115,9 @@ cos(const tquantity<U, T>& quantity) noexcept(noexcept(cos(quantity.value)))
  *                                @p quantity.
  */
 template <class U, class T>
-inline constexpr typename std::enable_if
-		<std::numeric_limits<T>::min_exponent != 0,
-		 tquantity<tsubtract<U, RAD>, T>>::type
+inline constexpr typename std::enable_if<std::numeric_limits<T>::min_exponent
+										 != 0,
+										 tquantity<tsubtract<U, RAD>, T>>::type
 tan(const tquantity<U, T>& quantity) noexcept(noexcept(tan(quantity.value)))
 {
 	using std::tan;
@@ -145,9 +145,9 @@ tan(const tquantity<U, T>& quantity) noexcept(noexcept(tan(quantity.value)))
  *                                @p quantity.
  */
 template <class U, class T>
-inline constexpr typename std::enable_if
-		<std::numeric_limits<T>::min_exponent != 0,
-		 tquantity<tadd<U, RAD>, T>>::type
+inline constexpr typename std::enable_if<std::numeric_limits<T>::min_exponent
+										 != 0,
+										 tquantity<tadd<U, RAD>, T>>::type
 asin(tquantity<U, T> quantity) noexcept(noexcept(asin(quantity.value)))
 {
 	using std::asin;
@@ -175,9 +175,9 @@ asin(tquantity<U, T> quantity) noexcept(noexcept(asin(quantity.value)))
  *                                of @p quantity.
  */
 template <class U, class T>
-inline constexpr typename std::enable_if
-		<std::numeric_limits<T>::min_exponent != 0,
-		 tquantity<tadd<U, RAD>, T>>::type
+inline constexpr typename std::enable_if<std::numeric_limits<T>::min_exponent
+										 != 0,
+										 tquantity<tadd<U, RAD>, T>>::type
 acos(tquantity<U, T> quantity) noexcept(noexcept(acos(quantity.value)))
 {
 	using std::acos;
@@ -205,9 +205,9 @@ acos(tquantity<U, T> quantity) noexcept(noexcept(acos(quantity.value)))
  *                                of @p quantity.
  */
 template <class U, class T>
-inline constexpr typename std::enable_if
-		<std::numeric_limits<T>::min_exponent != 0,
-		 tquantity<tadd<U, RAD>, T>>::type
+inline constexpr typename std::enable_if<std::numeric_limits<T>::min_exponent
+										 != 0,
+										 tquantity<tadd<U, RAD>, T>>::type
 atan(tquantity<U, T> quantity) noexcept(noexcept(atan(quantity.value)))
 {
 	using std::atan;
@@ -235,8 +235,9 @@ atan(tquantity<U, T> quantity) noexcept(noexcept(atan(quantity.value)))
  *                                of @p quantity, using two input object.
  */
 template <class U, class T>
-inline constexpr typename std::enable_if
-		<std::numeric_limits<T>::min_exponent != 0, tquantity<RAD, T>>::type
+inline constexpr typename std::enable_if<std::numeric_limits<T>::min_exponent
+										 != 0,
+										 tquantity<RAD, T>>::type
 atan(tquantity<U, T> y,
 	 tquantity<U, T> x) noexcept(noexcept(atan2(y.value, x.value)))
 {
@@ -261,8 +262,9 @@ atan(tquantity<U, T> y,
  * @returns                       The object created from the value pi.
  */
 template <class T>
-inline constexpr typename std::enable_if
-		<std::numeric_limits<T>::min_exponent != 0, tquantity<RAD, T>>::type
+inline constexpr typename std::enable_if<std::numeric_limits<T>::min_exponent
+										 != 0,
+										 tquantity<RAD, T>>::type
 pi() noexcept(noexcept(boost::math::constants::pi<T>()))
 {
 	return tquantity<RAD, T>{boost::math::constants::pi<T>()};
@@ -284,8 +286,9 @@ pi() noexcept(noexcept(boost::math::constants::pi<T>()))
  *                                @p factor.
  */
 template <class T>
-inline constexpr typename std::enable_if
-		<std::numeric_limits<T>::min_exponent != 0, tquantity<RAD, T>>::type
+inline constexpr typename std::enable_if<std::numeric_limits<T>::min_exponent
+										 != 0,
+										 tquantity<RAD, T>>::type
 pi(const double factor) noexcept(noexcept(boost::math::constants::pi<T>()))
 {
 	return tquantity<RAD, T>{factor * boost::math::constants::pi<T>()};

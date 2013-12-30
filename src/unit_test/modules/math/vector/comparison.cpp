@@ -42,23 +42,23 @@ BOOST_AUTO_TEST_CASE(test_modules_math_vector_comparison)
 				  "No compile-time constant");
 
 
-	static_assert(tvector<unit::tlength, 1>{{unit::tlength{1.}}} == tvector
-				  <unit::tlength, 1>{{unit::tlength{1.}}},
+	static_assert(tvector<unit::tlength, 1>{{unit::tlength{1.}}}
+				  == tvector<unit::tlength, 1>{{unit::tlength{1.}}},
 				  "No compile-time constant");
-	static_assert(tvector<unit::tlength, 1>{{unit::tlength{1.}}} != tvector
-				  <unit::tlength, 1>{{unit::tlength{2.}}},
+	static_assert(tvector<unit::tlength, 1>{{unit::tlength{1.}}}
+				  != tvector<unit::tlength, 1>{{unit::tlength{2.}}},
 				  "No compile-time constant");
-	static_assert(tvector<unit::tlength, 1>{{unit::tlength{1.}}} < tvector
-				  <unit::tlength, 1>{{unit::tlength{2.}}},
+	static_assert(tvector<unit::tlength, 1>{{unit::tlength{1.}}}
+				  < tvector<unit::tlength, 1>{{unit::tlength{2.}}},
 				  "No compile-time constant");
-	static_assert(tvector<unit::tlength, 1>{{unit::tlength{1.}}} <= tvector
-				  <unit::tlength, 1>{{unit::tlength{2.}}},
+	static_assert(tvector<unit::tlength, 1>{{unit::tlength{1.}}}
+				  <= tvector<unit::tlength, 1>{{unit::tlength{2.}}},
 				  "No compile-time constant");
-	static_assert(tvector<unit::tlength, 1>{{unit::tlength{3.}}} > tvector
-				  <unit::tlength, 1>{{unit::tlength{2.}}},
+	static_assert(tvector<unit::tlength, 1>{{unit::tlength{3.}}}
+				  > tvector<unit::tlength, 1>{{unit::tlength{2.}}},
 				  "No compile-time constant");
-	static_assert(tvector<unit::tlength, 1>{{unit::tlength{3.}}} >= tvector
-				  <unit::tlength, 1>{{unit::tlength{2.}}},
+	static_assert(tvector<unit::tlength, 1>{{unit::tlength{3.}}}
+				  >= tvector<unit::tlength, 1>{{unit::tlength{2.}}},
 				  "No compile-time constant");
 
 	{

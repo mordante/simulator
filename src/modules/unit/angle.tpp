@@ -63,8 +63,8 @@ inline constexpr unit::tangle operator"" _rad(const unsigned long long value)
  */
 inline constexpr unit::tangle operator"" _deg(const long double value)
 {
-	return unit::pi
-			<unit::tangle::type>(static_cast<unit::tangle::type>(value / 180.));
+	return unit::pi<unit::tangle::type>(
+			static_cast<unit::tangle::type>(value / 180.));
 }
 
 /**
@@ -76,8 +76,8 @@ inline constexpr unit::tangle operator"" _deg(const long double value)
  */
 inline constexpr unit::tangle operator"" _deg(const unsigned long long value)
 {
-	return unit::pi
-			<unit::tangle::type>(static_cast<unit::tangle::type>(value / 180.));
+	return unit::pi<unit::tangle::type>(
+			static_cast<unit::tangle::type>(value / 180.));
 }
 
 #endif

@@ -38,4 +38,3 @@ std::vector<tpoint> line_template_lookup(tpoint begin, tpoint end);
 } // namespace grid
 
 #endif
-

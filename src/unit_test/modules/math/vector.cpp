@@ -86,35 +86,17 @@ static void test_coordinate()
 	}
 
 	{
-		static_assert(tvector<unit::tlength, 3> {
-						  {
-							  unit::tlength{1.}, unit::tlength{2.},
-									  unit::tlength
-							  {
-								  3.
-							  }
-						  }
-					  }.x() == unit::tlength{1},
+		static_assert(tvector<unit::tlength, 3>{
+							  {unit::tlength{1.}, unit::tlength{2.},
+							   unit::tlength{3.}}}.x() == unit::tlength{1},
 					  "No compile-time constant");
-		static_assert(tvector<unit::tlength, 3> {
-						  {
-							  unit::tlength{1.}, unit::tlength{2.},
-									  unit::tlength
-							  {
-								  3.
-							  }
-						  }
-					  }.y() == unit::tlength{2.},
+		static_assert(tvector<unit::tlength, 3>{
+							  {unit::tlength{1.}, unit::tlength{2.},
+							   unit::tlength{3.}}}.y() == unit::tlength{2.},
 					  "No compile-time constant");
-		static_assert(tvector<unit::tlength, 3> {
-						  {
-							  unit::tlength{1.}, unit::tlength{2.},
-									  unit::tlength
-							  {
-								  3.
-							  }
-						  }
-					  }.z() == unit::tlength{3.},
+		static_assert(tvector<unit::tlength, 3>{
+							  {unit::tlength{1.}, unit::tlength{2.},
+							   unit::tlength{3.}}}.z() == unit::tlength{3.},
 					  "No compile-time constant");
 	}
 

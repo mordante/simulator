@@ -72,9 +72,8 @@ sum(const tvector<T, N>& vector) noexcept(noexcept(T {} + T{}))
  * @returns                       The power sum of all elements in @p vector.
  */
 template <std::size_t P, class T, std::size_t N>
-inline constexpr auto pow_sum(const tvector
-							  <T, N>& vector) noexcept(noexcept(T {} + T{})
-													   && noexcept(T{}* T{}))
+inline constexpr auto pow_sum(const tvector<T, N>& vector) noexcept(
+		noexcept(T {} + T{}) && noexcept(T{}* T{}))
 		-> decltype(detail::tpow<P, T>::pow(T{}))
 {
 	return detail::tsum<0, T, N>::template pow_sum<P>(vector);
@@ -105,4 +104,3 @@ length(const tvector<T, N>& vector) noexcept(noexcept(sqrt((T{}* T{}))))
 } // namespace math
 
 #endif
-

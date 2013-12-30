@@ -38,9 +38,9 @@ struct tpolar;
  *
  * The system uses the convention as described on wikipedia [1]:
 @verbatim
-    z
-    |
-    |__ y
+	z
+	|
+	|__ y
    /
   /
  x

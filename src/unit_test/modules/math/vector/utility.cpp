@@ -158,8 +158,8 @@ BOOST_AUTO_TEST_CASE(test_modules_math_vector_utility)
 	}
 
 	{
-		constexpr tvector
-				<unit::tlength, 2> vector{{unit::tlength{3}, unit::tlength{4}}};
+		constexpr tvector<unit::tlength, 2> vector{
+				{unit::tlength{3}, unit::tlength{4}}};
 		constexpr unit::tlength result{unit::tlength{5}};
 		BOOST_CHECK_EQUAL(length(vector) == result, true);
 	}

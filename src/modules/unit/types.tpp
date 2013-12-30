@@ -32,12 +32,12 @@ namespace unit
 {
 
 /** The basic integral type. */
-using tinteger = boost::multiprecision::number
-		<boost::multiprecision::cpp_int_backend<64, true>>;
+using tinteger = boost::multiprecision::
+		number<boost::multiprecision::cpp_int_backend<64, true>>;
 
 /** The basic floating point type. */
-using tfloat = boost::multiprecision::number
-		<boost::multiprecision::cpp_dec_float<50>>;
+using tfloat = boost::multiprecision::
+		number<boost::multiprecision::cpp_dec_float<50>>;
 
 } // namespace unit
 

@@ -79,11 +79,11 @@ namespace property_tree
 {
 
 template <typename Ch, typename Traits, typename Alloc, class U, class T>
-struct translator_between
-		<std::basic_string<Ch, Traits, Alloc>, unit::tquantity<U, T>>
+struct translator_between<std::basic_string<Ch, Traits, Alloc>,
+						  unit::tquantity<U, T>>
 {
-	using type = unit::ptree_converter
-			<Ch, Traits, Alloc, unit::tquantity<U, T>>;
+	using type
+			= unit::ptree_converter<Ch, Traits, Alloc, unit::tquantity<U, T>>;
 };
 
 } // namespace property_tree

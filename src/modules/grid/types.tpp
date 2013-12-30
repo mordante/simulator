@@ -35,5 +35,3 @@ using tint = int;
 } // namespace grid
 
 #endif
-
-

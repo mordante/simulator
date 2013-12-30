@@ -51,4 +51,3 @@ REGISTER_LOGGER_MODULE(<path>)
  * Other changes in a multi-threaded context may lead to <i>undefined
  * behaviour</i>.
  */
-

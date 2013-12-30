@@ -166,10 +166,9 @@
 #define ENUM_FAIL_INPUT(enumerate)                                             \
 	do {                                                                       \
 		static_assert(                                                         \
-				std::is_same                                                   \
-				<std::remove_cv                                                \
-				 <std::remove_reference<decltype(enumerate)>::type>::type,     \
-				 std::string>::value,                                          \
+				std::is_same<std::remove_cv<std::remove_reference<decltype(    \
+									 enumerate)>::type>::type,                 \
+							 std::string>::value,                              \
 				"The enumerate parameter must be a string type.");             \
 		throw ::lib::texception(                                               \
 				::lib::texception::ttype::invalid_value,                       \

@@ -76,8 +76,8 @@ struct tsum
 			noexcept(T {} + T{}) && noexcept(T{}* T{}))
 			-> decltype(detail::tpow<P, T>::pow(T{}))
 	{
-		return tpow<P, T>::pow(vector.data[I]) + tsum
-			   <I + 1, T, N>::template pow_sum<P>(vector);
+		return tpow<P, T>::pow(vector.data[I])
+			   + tsum<I + 1, T, N>::template pow_sum<P>(vector);
 	}
 };
 

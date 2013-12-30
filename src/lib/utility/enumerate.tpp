@@ -122,9 +122,8 @@ namespace detail
  * @param rhs                     The enumerate to write.
  */
 template <class T>
-typename std::enable_if<std::is_enum<T>::value>::type operator<<(std::string
-																 & lhs,
-																 const T rhs)
+typename std::enable_if<std::is_enum<T>::value>::type operator<<(
+		std::string& lhs, const T rhs)
 {
 #define ENUM(ENUMERATE, STRING)                                                \
 	case ENUM_TYPE::ENUMERATE:                                                 \

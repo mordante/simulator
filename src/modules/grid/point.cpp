@@ -29,8 +29,7 @@ operator+=(std::vector<tpoint>& lhs, const tpoint& rhs) noexcept
 	return lhs;
 }
 
-std::vector<tpoint>
-operator+(std::vector<tpoint> lhs, const tpoint& rhs)
+std::vector<tpoint> operator+(std::vector<tpoint> lhs, const tpoint& rhs)
 {
 	for(auto& point : lhs) {
 		point += rhs;

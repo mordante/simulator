@@ -182,8 +182,7 @@ inline constexpr tpoint operator+(tpoint lhs, const tpoint& rhs) noexcept
  * @returns                       The object created by adding @p rhs to every
  *                                item in @p lhs.
  */
-std::vector<tpoint>
-operator+(std::vector<tpoint> lhs, const tpoint& rhs);
+std::vector<tpoint> operator+(std::vector<tpoint> lhs, const tpoint& rhs);
 
 /***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****/
 /***** Operations                                                        *****/

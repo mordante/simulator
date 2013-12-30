@@ -42,8 +42,8 @@ namespace unit
 template <class U, class T>
 inline constexpr bool
 operator==(const tquantity<U, T>& lhs,
-		   const tquantity
-		   <U, T>& rhs) noexcept(noexcept(lhs.value == rhs.value))
+		   const tquantity<U, T>& rhs) noexcept(noexcept(lhs.value
+														 == rhs.value))
 {
 	return lhs.value == rhs.value;
 }
@@ -63,8 +63,8 @@ operator==(const tquantity<U, T>& lhs,
 template <class U, class T>
 inline constexpr bool
 operator!=(const tquantity<U, T>& lhs,
-		   const tquantity
-		   <U, T>& rhs) noexcept(noexcept(lhs.value == rhs.value))
+		   const tquantity<U, T>& rhs) noexcept(noexcept(lhs.value
+														 == rhs.value))
 {
 	return !(lhs.value == rhs.value);
 }

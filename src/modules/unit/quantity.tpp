@@ -72,9 +72,9 @@ struct tquantity
 	template <class N>
 	constexpr operator tquantity<U, N>() const
 	{
-		static_assert(std::is_same
-					  <typename std::common_type<N, T>::type, N>::value,
-					  "Narrowing conversion is prohibited.");
+		static_assert(
+				std::is_same<typename std::common_type<N, T>::type, N>::value,
+				"Narrowing conversion is prohibited.");
 
 		return tquantity<U, N>{static_cast<N>(value)};
 	}

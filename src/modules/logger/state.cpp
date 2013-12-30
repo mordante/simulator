@@ -79,9 +79,8 @@ void header_writer_null(boost::log::record_ostream&, const tseverity)
 std::function<void(boost::log::record_ostream&, const tseverity)>&
 header_writer()
 {
-	static std::function
-			<void(boost::log::record_ostream&, const tseverity)> result{
-					header_writer_default};
+	static std::function<void(boost::log::record_ostream&, const tseverity)>
+	result{header_writer_default};
 	return result;
 }
 
