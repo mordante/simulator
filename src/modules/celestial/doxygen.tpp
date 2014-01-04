@@ -1,6 +1,6 @@
 
 /*
- * Copyright (C) 2013 by Mark de Wever <koraq@xs4all.nl>
+ * Copyright (C) 2013 - 2014 by Mark de Wever <koraq@xs4all.nl>
  * Part of the simulator project.
  *
  * This program is free software; you can redistribute it and/or
