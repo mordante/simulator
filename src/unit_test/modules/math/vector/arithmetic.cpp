@@ -42,23 +42,17 @@ BOOST_AUTO_TEST_CASE(test_modules_math_vector_arithmetic)
 	{
 		static_assert(tvector<unit::tlength, 1> {
 						  {
-							  unit::tlength
-							  {
-								  1.
-							  }
+							  1_m
 						  }
-					  } + tvector<unit::tlength, 1>{{unit::tlength{1.}}}
-					  == tvector<unit::tlength, 1>{{unit::tlength{2.}}},
+					  } + tvector<unit::tlength, 1>{{1_m}}
+					  == tvector<unit::tlength, 1>{{2_m}},
 					  "No compile-time constant");
 	}
 
 	{
-		constexpr tvector<unit::tlength, 3> lhs{
-				{unit::tlength{1}, unit::tlength{2}, unit::tlength{3}}};
-		constexpr tvector<unit::tlength, 3> rhs{
-				{unit::tlength{1}, unit::tlength{2}, unit::tlength{3}}};
-		constexpr tvector<unit::tlength, 3> result{
-				{unit::tlength{2}, unit::tlength{4}, unit::tlength{6}}};
+		constexpr tvector<unit::tlength, 3> lhs{{1_m, 2_m, 3_m}};
+		constexpr tvector<unit::tlength, 3> rhs{{1_m, 2_m, 3_m}};
+		constexpr tvector<unit::tlength, 3> result{{2_m, 4_m, 6_m}};
 		BOOST_CHECK_EQUAL(lhs + rhs == result, true);
 	}
 
@@ -74,23 +68,17 @@ BOOST_AUTO_TEST_CASE(test_modules_math_vector_arithmetic)
 	{
 		static_assert(tvector<unit::tlength, 1> {
 						  {
-							  unit::tlength
-							  {
-								  2.
-							  }
+							  2_m
 						  }
-					  } - tvector<unit::tlength, 1>{{unit::tlength{1.}}}
-					  == tvector<unit::tlength, 1>{{unit::tlength{1.}}},
+					  } - tvector<unit::tlength, 1>{{1_m}}
+					  == tvector<unit::tlength, 1>{{1_m}},
 					  "No compile-time constant");
 	}
 
 	{
-		constexpr tvector<unit::tlength, 3> lhs{
-				{unit::tlength{2}, unit::tlength{4}, unit::tlength{6}}};
-		constexpr tvector<unit::tlength, 3> rhs{
-				{unit::tlength{1}, unit::tlength{2}, unit::tlength{3}}};
-		constexpr tvector<unit::tlength, 3> result{
-				{unit::tlength{1}, unit::tlength{2}, unit::tlength{3}}};
+		constexpr tvector<unit::tlength, 3> lhs{{2_m, 4_m, 6_m}};
+		constexpr tvector<unit::tlength, 3> rhs{{1_m, 2_m, 3_m}};
+		constexpr tvector<unit::tlength, 3> result{{1_m, 2_m, 3_m}};
 		BOOST_CHECK_EQUAL(lhs - rhs == result, true);
 	}
 
@@ -104,19 +92,17 @@ BOOST_AUTO_TEST_CASE(test_modules_math_vector_arithmetic)
 	}
 
 	{
-		static_assert(tvector<unit::tlength, 1>{{unit::tlength{2.}}} * 3.
-					  == tvector<unit::tlength, 1>{{unit::tlength{6.}}},
+		static_assert(tvector<unit::tlength, 1>{{2_m}} * 3.
+					  == tvector<unit::tlength, 1>{{6_m}},
 					  "No compile-time constant");
-		static_assert(3. * tvector<unit::tlength, 1>{{unit::tlength{2.}}}
-					  == tvector<unit::tlength, 1>{{unit::tlength{6.}}},
+		static_assert(3. * tvector<unit::tlength, 1>{{2_m}}
+					  == tvector<unit::tlength, 1>{{6_m}},
 					  "No compile-time constant");
 	}
 
 	{
-		constexpr tvector<unit::tlength, 3> lhs{
-				{unit::tlength{1}, unit::tlength{2}, unit::tlength{3}}};
-		constexpr tvector<unit::tlength, 3> result{
-				{unit::tlength{3}, unit::tlength{6}, unit::tlength{9}}};
+		constexpr tvector<unit::tlength, 3> lhs{{1_m, 2_m, 3_m}};
+		constexpr tvector<unit::tlength, 3> result{{3_m, 6_m, 9_m}};
 		BOOST_CHECK_EQUAL(lhs * 3. == result, true);
 		BOOST_CHECK_EQUAL(3. * lhs == result, true);
 	}
@@ -132,8 +118,8 @@ BOOST_AUTO_TEST_CASE(test_modules_math_vector_arithmetic)
 
 	{
 		using tresult = decltype(unit::tlength{} * unit::tlength{});
-		static_assert(tvector<unit::tlength, 1>{{unit::tlength{2.}}}
-					  * tvector<unit::tlength, 1>{{unit::tlength{3.}}}
+		static_assert(tvector<unit::tlength, 1>{{2_m}}
+					  * tvector<unit::tlength, 1>{{3_m}}
 					  == tvector<tresult, 1>{{tresult{6.}}},
 					  "No compile-time constant");
 	}
@@ -141,10 +127,8 @@ BOOST_AUTO_TEST_CASE(test_modules_math_vector_arithmetic)
 	{
 		using tresult = decltype(unit::tlength{} * unit::tlength{});
 
-		constexpr tvector<unit::tlength, 3> lhs{
-				{unit::tlength{1}, unit::tlength{2}, unit::tlength{3}}};
-		constexpr tvector<unit::tlength, 3> rhs{
-				{unit::tlength{1}, unit::tlength{2}, unit::tlength{3}}};
+		constexpr tvector<unit::tlength, 3> lhs{{1_m, 2_m, 3_m}};
+		constexpr tvector<unit::tlength, 3> rhs{{1_m, 2_m, 3_m}};
 		constexpr tvector<tresult, 3> result{
 				{tresult{1}, tresult{4}, tresult{9}}};
 		BOOST_CHECK_EQUAL(lhs * rhs == result, true);
@@ -168,16 +152,14 @@ BOOST_AUTO_TEST_CASE(test_modules_math_vector_arithmetic)
 	}
 
 	{
-		static_assert(tvector<unit::tlength, 1>{{unit::tlength{6.}}} / 3.
-					  == tvector<unit::tlength, 1>{{unit::tlength{2.}}},
+		static_assert(tvector<unit::tlength, 1>{{6_m}} / 3.
+					  == tvector<unit::tlength, 1>{{2_m}},
 					  "No compile-time constant");
 	}
 
 	{
-		constexpr tvector<unit::tlength, 3> lhs{
-				{unit::tlength{3}, unit::tlength{6}, unit::tlength{9}}};
-		constexpr tvector<unit::tlength, 3> result{
-				{unit::tlength{1}, unit::tlength{2}, unit::tlength{3}}};
+		constexpr tvector<unit::tlength, 3> lhs{{3_m, 6_m, 9_m}};
+		constexpr tvector<unit::tlength, 3> result{{1_m, 2_m, 3_m}};
 		BOOST_CHECK_EQUAL(lhs / 3. == result, true);
 	}
 
@@ -192,8 +174,8 @@ BOOST_AUTO_TEST_CASE(test_modules_math_vector_arithmetic)
 
 	{
 		using tresult = decltype(unit::tlength{} / unit::tlength{});
-		static_assert(tvector<unit::tlength, 1>{{unit::tlength{6.}}}
-					  / tvector<unit::tlength, 1>{{unit::tlength{2.}}}
+		static_assert(tvector<unit::tlength, 1>{{6_m}}
+					  / tvector<unit::tlength, 1>{{2_m}}
 					  == tvector<tresult, 1>{{tresult{3.}}},
 					  "No compile-time constant");
 	}
@@ -201,10 +183,8 @@ BOOST_AUTO_TEST_CASE(test_modules_math_vector_arithmetic)
 	{
 		using tresult = decltype(unit::tlength{} / unit::tlength{});
 
-		constexpr tvector<unit::tlength, 3> lhs{
-				{unit::tlength{1}, unit::tlength{4}, unit::tlength{9}}};
-		constexpr tvector<unit::tlength, 3> rhs{
-				{unit::tlength{1}, unit::tlength{2}, unit::tlength{3}}};
+		constexpr tvector<unit::tlength, 3> lhs{{1_m, 4_m, 9_m}};
+		constexpr tvector<unit::tlength, 3> rhs{{1_m, 2_m, 3_m}};
 		constexpr tvector<tresult, 3> result{
 				{tresult{1}, tresult{2}, tresult{3}}};
 		BOOST_CHECK_EQUAL(lhs / rhs == result, true);

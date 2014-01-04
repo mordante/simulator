@@ -29,9 +29,7 @@ using namespace geometry;
 
 static void load()
 {
-	const torbit result{
-			tpolar{unit::tlength{1.23}, unit::tangle{2.34}, unit::tangle{3.45}},
-			unit::ttime{4}, unit::ttime{5}};
+	const torbit result{tpolar{1.23_m, 2.34_rad, 3.45_rad}, 4_s, 5_s};
 
 	boost::property_tree::ptree rotation;
 	rotation.put("version", "1");
@@ -63,9 +61,7 @@ static void load()
 
 static void store()
 {
-	const torbit input{
-			tpolar{unit::tlength{1.23}, unit::tangle{2.34}, unit::tangle{3.45}},
-			unit::ttime{4}, unit::ttime{5}};
+	const torbit input{tpolar{1.23_m, 2.34_rad, 3.45_rad}, 4_s, 5_s};
 	const boost::property_tree::ptree output{input.store()};
 
 	BOOST_REQUIRE_EQUAL(output.size(), 4);
@@ -111,18 +107,17 @@ static void test_theta_plane()
 	const tcartesian delta{1e-9_m, 1e-9_m, 1e-9_m};
 
 	{
-		torbit orbit{geometry::tpolar{1_m, 0._deg, 90._deg}, 36 * 36_s, 36_s};
+		torbit orbit{geometry::tpolar{1_m, 0_deg, 90_deg}, 36 * 36_s, 36_s};
 		check(orbit.position(0_s), tcartesian{1_m, 0_m, 0_m}, delta);
 	}
 
 	for(int i = 0; i <= 36; ++i) {
 
-		unit::tangle angle{10._deg};
+		unit::tangle angle{10_deg};
 		angle *= i;
 		const tcartesian result{1.25_m * cos(angle), 1.25_m * sin(angle), 0_m};
 
-		const torbit orbit{geometry::tpolar{1.25_m, 0._deg, 90._deg}, 36_s,
-						   0_s};
+		const torbit orbit{geometry::tpolar{1.25_m, 0_deg, 90_deg}, 36_s, 0_s};
 		check(orbit.position(1_s * i), result, delta);
 	}
 }
@@ -135,11 +130,11 @@ static void test_phi_plane()
 
 	for(int i = 0; i <= 72; ++i) {
 
-		unit::tangle angle{10._deg};
+		unit::tangle angle{10_deg};
 		angle *= i;
 		const tcartesian result{1.66_m * sin(angle), 0_m, 1.66_m * cos(angle)};
 
-		const torbit orbit{geometry::tpolar{1.66_m, 0._deg, 0._deg}, 0_s, 36_s};
+		const torbit orbit{geometry::tpolar{1.66_m, 0_deg, 0_deg}, 0_s, 36_s};
 		check(orbit.position(1_s * i), result, delta);
 	}
 }
@@ -152,17 +147,17 @@ static void test_theta_and_phi_plane()
 
 	for(int i = 0; i <= 360; ++i) {
 
-		unit::tangle theta_angle{10._deg};
+		unit::tangle theta_angle{10_deg};
 		theta_angle *= i;
 
-		unit::tangle phi_angle{1._deg};
+		unit::tangle phi_angle{1_deg};
 		phi_angle *= i;
 
-		const tcartesian result{1._m * cos(theta_angle) * sin(phi_angle),
-								1._m * sin(theta_angle) * sin(phi_angle),
-								1._m * cos(phi_angle)};
+		const tcartesian result{1_m * cos(theta_angle) * sin(phi_angle),
+								1_m * sin(theta_angle) * sin(phi_angle),
+								1_m * cos(phi_angle)};
 
-		const torbit orbit{geometry::tpolar{1._m, 0._deg, 0._deg}, 36_s, 360_s};
+		const torbit orbit{geometry::tpolar{1_m, 0_deg, 0_deg}, 36_s, 360_s};
 		check(orbit.position(1_s * i), result, delta);
 	}
 }

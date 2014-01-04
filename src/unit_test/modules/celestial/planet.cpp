@@ -30,11 +30,9 @@ struct tunit_test
 
 	static void load()
 	{
-		const tplanet result{"planet",
-							 geometry::tcartesian{unit::tlength{1.23},
-												  unit::tlength{2.34},
-												  unit::tlength{3.45}},
-							 unit::tlength{4.56}, unit::tlength{5.67}};
+		const tplanet result{
+				"planet", geometry::tcartesian{1.23_m, 2.34_m, 3.45_m},
+				4.56_m,   5.67_m};
 
 		boost::property_tree::ptree origin;
 		origin.put("version", "1");
@@ -68,10 +66,9 @@ struct tunit_test
 
 	static void store()
 	{
-		const tplanet input{"planet", geometry::tcartesian{unit::tlength{1.23},
-														   unit::tlength{2.34},
-														   unit::tlength{3.45}},
-							unit::tlength{4.56}, unit::tlength{5.67}};
+		const tplanet input{
+				"planet", geometry::tcartesian{1.23_m, 2.34_m, 3.45_m},
+				4.56_m,   5.67_m};
 
 		const boost::property_tree::ptree output{input.store()};
 

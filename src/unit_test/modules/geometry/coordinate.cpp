@@ -30,8 +30,7 @@ using namespace geometry;
 
 static void polar_load()
 {
-	const tpolar result{unit::tlength{1.23}, unit::tangle{2.34},
-						unit::tangle{3.45}};
+	const tpolar result{1.23_m, 2.34_rad, 3.45_rad};
 
 	boost::property_tree::ptree input;
 	input.put("version", "1");
@@ -52,8 +51,7 @@ static void polar_load()
 
 static void polar_store()
 {
-	const tpolar input{unit::tlength{1.23}, unit::tangle{2.34},
-					   unit::tangle{3.45}};
+	const tpolar input{1.23_m, 2.34_rad, 3.45_rad};
 	const boost::property_tree::ptree output{input.store()};
 
 	BOOST_REQUIRE_EQUAL(output.size(), 4);
@@ -73,24 +71,23 @@ static void polar_store()
 
 static void polar_comparision()
 {
-	const tpolar input{unit::tlength{1.23}, unit::tangle{2.34},
-					   unit::tangle{3.45}};
+	const tpolar input{1.23_m, 2.34_rad, 3.45_rad};
 
 	tpolar output{input};
 
 	BOOST_REQUIRE_EQUAL(input, output);
 
-	output.r = unit::tlength{3.141};
+	output.r = 3.141_m;
 	BOOST_REQUIRE_NE(input, output);
 	output = input;
 	BOOST_REQUIRE_EQUAL(input, output);
 
-	output.theta = unit::tangle{3.141};
+	output.theta = 3.141_rad;
 	BOOST_REQUIRE_NE(input, output);
 	output = input;
 	BOOST_REQUIRE_EQUAL(input, output);
 
-	output.phi = unit::tangle{3.141};
+	output.phi = 3.141_rad;
 	BOOST_REQUIRE_NE(input, output);
 	output = input;
 	BOOST_REQUIRE_EQUAL(input, output);
@@ -100,8 +97,7 @@ static void polar_comparision()
 
 static void cartesian_load()
 {
-	const tcartesian result{unit::tlength{1.23}, unit::tlength{2.34},
-							unit::tlength{3.45}};
+	const tcartesian result{1.23_m, 2.34_m, 3.45_m};
 
 	boost::property_tree::ptree input;
 	input.put("version", "1");
@@ -122,8 +118,7 @@ static void cartesian_load()
 
 static void cartesian_store()
 {
-	const tcartesian input{unit::tlength{1.23}, unit::tlength{2.34},
-						   unit::tlength{3.45}};
+	const tcartesian input{1.23_m, 2.34_m, 3.45_m};
 	const boost::property_tree::ptree output{input.store()};
 
 	BOOST_REQUIRE_EQUAL(output.size(), 4);
@@ -144,29 +139,25 @@ static void cartesian_store()
 static void cartesian_length()
 {
 	{
-		const tcartesian input{unit::tlength{0.}, unit::tlength{0.},
-							   unit::tlength{0.}};
-		const unit::tlength output{unit::tlength{0.}};
+		const tcartesian input{0_m, 0_m, 0_m};
+		const unit::tlength output{0_m};
 		BOOST_CHECK_EQUAL(input.length(), output);
 	}
 
 	{
-		const tcartesian input{unit::tlength{1.}, unit::tlength{1.},
-							   unit::tlength{1.}};
+		const tcartesian input{1_m, 1_m, 1_m};
 		const unit::tlength output{unit::tlength{std::sqrt(3.)}};
 		BOOST_CHECK_EQUAL(input.length(), output);
 	}
 
 	{
-		const tcartesian input{unit::tlength{2.}, unit::tlength{2.},
-							   unit::tlength{2.}};
+		const tcartesian input{2_m, 2_m, 2_m};
 		const unit::tlength output{unit::tlength{std::sqrt(12.)}};
 		BOOST_CHECK_EQUAL(input.length(), output);
 	}
 
 	{
-		const tcartesian input{unit::tlength{-2.}, unit::tlength{-2.},
-							   unit::tlength{-2.}};
+		const tcartesian input{-2_m, -2_m, -2_m};
 		const unit::tlength output{unit::tlength{std::sqrt(12.)}};
 		BOOST_CHECK_EQUAL(input.length(), output);
 	}
@@ -176,22 +167,18 @@ static void cartesian_length()
 
 static void cartesian_arithmetic()
 {
-	const tcartesian lhs{unit::tlength{1.25}, unit::tlength{2.50},
-						 unit::tlength{3.75}};
+	const tcartesian lhs{1.25_m, 2.50_m, 3.75_m};
 
-	const tcartesian rhs{unit::tlength{5.00}, unit::tlength{6.25},
-						 unit::tlength{7.50}};
+	const tcartesian rhs{5.00_m, 6.25_m, 7.50_m};
 
-	const tcartesian add{unit::tlength{6.25}, unit::tlength{8.75},
-						 unit::tlength{11.25}};
+	const tcartesian add{6.25_m, 8.75_m, 11.25_m};
 
 	BOOST_CHECK_EQUAL(lhs + rhs, add);
 	tcartesian add_tmp{lhs};
 	BOOST_CHECK_EQUAL(add_tmp += rhs, add);
 
 
-	const tcartesian sub{unit::tlength{-3.75}, unit::tlength{-3.75},
-						 unit::tlength{-3.75}};
+	const tcartesian sub{-3.75_m, -3.75_m, -3.75_m};
 
 	BOOST_CHECK_EQUAL(lhs - rhs, sub);
 	tcartesian sub_tmp{lhs};
@@ -202,24 +189,23 @@ static void cartesian_arithmetic()
 
 static void cartesian_comparision()
 {
-	const tcartesian input{unit::tlength{1.23}, unit::tlength{2.34},
-						   unit::tlength{3.45}};
+	const tcartesian input{1.23_m, 2.34_m, 3.45_m};
 
 	tcartesian output{input};
 
 	BOOST_REQUIRE_EQUAL(input, output);
 
-	output.x = unit::tlength{3.141};
+	output.x = 3.141_m;
 	BOOST_REQUIRE_NE(input, output);
 	output = input;
 	BOOST_REQUIRE_EQUAL(input, output);
 
-	output.y = unit::tlength{3.141};
+	output.y = 3.141_m;
 	BOOST_REQUIRE_NE(input, output);
 	output = input;
 	BOOST_REQUIRE_EQUAL(input, output);
 
-	output.z = unit::tlength{3.141};
+	output.z = 3.141_m;
 	BOOST_REQUIRE_NE(input, output);
 	output = input;
 	BOOST_REQUIRE_EQUAL(input, output);
@@ -248,16 +234,16 @@ static void roundtrip(tpolar original)
 static void roundtrip()
 {
 	/* tcartesian -> tpolar -> tcartesian */
-	roundtrip(tcartesian{0._m, 0._m, 0._m});
-	roundtrip(tcartesian{0._m, 0._m, 1._m});
-	roundtrip(tcartesian{0._m, 1._m, 0._m});
-	roundtrip(tcartesian{0._m, 1._m, 1._m});
-	roundtrip(tcartesian{1._m, 0._m, 0._m});
-	roundtrip(tcartesian{1._m, 0._m, 1._m});
-	roundtrip(tcartesian{1._m, 0._m, 0._m});
-	roundtrip(tcartesian{1._m, 1._m, 1._m});
-	roundtrip(tcartesian{1._m, 1._m, 0._m});
-	roundtrip(tcartesian{1._m, 1._m, 1._m});
+	roundtrip(tcartesian{0_m, 0_m, 0_m});
+	roundtrip(tcartesian{0_m, 0_m, 1_m});
+	roundtrip(tcartesian{0_m, 1_m, 0_m});
+	roundtrip(tcartesian{0_m, 1_m, 1_m});
+	roundtrip(tcartesian{1_m, 0_m, 0_m});
+	roundtrip(tcartesian{1_m, 0_m, 1_m});
+	roundtrip(tcartesian{1_m, 0_m, 0_m});
+	roundtrip(tcartesian{1_m, 1_m, 1_m});
+	roundtrip(tcartesian{1_m, 1_m, 0_m});
+	roundtrip(tcartesian{1_m, 1_m, 1_m});
 
 	/* tpolar -> tcartesian -> tpolar */
 	for(int r = 1; r < 10; ++r) {
@@ -267,9 +253,9 @@ static void roundtrip()
 					continue;
 				}
 				roundtrip(
-						tpolar{1._m * static_cast<unit::tlength::type>(r),
-							   10._deg * static_cast<unit::tangle::type>(theta),
-							   10._deg * static_cast<unit::tangle::type>(phi)});
+						tpolar{1_m * static_cast<unit::tlength::type>(r),
+							   10_deg * static_cast<unit::tangle::type>(theta),
+							   10_deg * static_cast<unit::tangle::type>(phi)});
 			}
 		}
 	}

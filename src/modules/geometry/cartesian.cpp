@@ -69,8 +69,8 @@ tcartesian::operator tpolar() const
 
 	const unit::tlength l{length()};
 
-	if(l == 0._m) {
-		return tpolar{0._m, 0._rad, 0._rad};
+	if(l == 0_m) {
+		return tpolar{0_m, 0_rad, 0_rad};
 	}
 
 	return tpolar{l, atan(y, x), acos(z / l)};

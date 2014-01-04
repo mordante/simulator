@@ -30,26 +30,26 @@ struct tunit_test
 		celestial::tuniverse universe;
 		universe.add(celestial::tsun{
 				"sun1", geometry::tcartesian{0_m, 0_m, 0_m},
-				geometry::torbit{geometry::tpolar{0.1_m, 0._deg, 90._deg}, 40_s,
+				geometry::torbit{geometry::tpolar{0.1_m, 0_deg, 90_deg}, 40_s,
 								 0_s},
 				0.01_m, 1_J});
 
 		universe.add(celestial::tsun{
 				"sun2", geometry::tcartesian{0_m, 0_m, 0_m},
-				geometry::torbit{geometry::tpolar{0.1_m, 90._deg, 90._deg},
-								 40_s, 0_s},
+				geometry::torbit{geometry::tpolar{0.1_m, 90_deg, 90_deg}, 40_s,
+								 0_s},
 				0.01_m, 1_J});
 
 		universe.add(celestial::tmoon{
 				"moon1", geometry::tcartesian{0_m, 0_m, 0_m},
-				geometry::torbit{geometry::tpolar{0.1_m, 180._deg, 90._deg},
-								 40_s, 0_s},
+				geometry::torbit{geometry::tpolar{0.1_m, 180_deg, 90_deg}, 40_s,
+								 0_s},
 				0.01_m});
 
 		universe.add(celestial::tmoon{
 				"moon2", geometry::tcartesian{0_m, 0_m, 0_m},
-				geometry::torbit{geometry::tpolar{0.1_m, 270._deg, 90._deg},
-								 40_s, 0_s},
+				geometry::torbit{geometry::tpolar{0.1_m, 270_deg, 90_deg}, 40_s,
+								 0_s},
 				0.01_m});
 
 		tsimulator simulation(std::move(universe));
@@ -63,26 +63,26 @@ struct tunit_test
 		celestial::tuniverse universe;
 		universe.add(celestial::tsun{
 				"sun1", geometry::tcartesian{0_m, 0_m, 0_m},
-				geometry::torbit{geometry::tpolar{0.1_m, 0._deg, 90._deg}, 40_s,
+				geometry::torbit{geometry::tpolar{0.1_m, 0_deg, 90_deg}, 40_s,
 								 0_s},
 				0.001_m, 1_J});
 
 		universe.add(celestial::tsun{
 				"sun2", geometry::tcartesian{0_m, 0_m, 0_m},
-				geometry::torbit{geometry::tpolar{0.1_m, 90._deg, 90._deg}, 1_s,
+				geometry::torbit{geometry::tpolar{0.1_m, 90_deg, 90_deg}, 1_s,
 								 0_s},
 				0.001_m, 1_J});
 
 		universe.add(celestial::tmoon{
 				"moon1", geometry::tcartesian{0_m, 0_m, 0_m},
-				geometry::torbit{geometry::tpolar{0.1_m, 180._deg, 90._deg},
-								 40_s, 0_s},
+				geometry::torbit{geometry::tpolar{0.1_m, 180_deg, 90_deg}, 40_s,
+								 0_s},
 				0.01_m});
 
 		universe.add(celestial::tmoon{
 				"moon2", geometry::tcartesian{0_m, 0_m, 0_m},
-				geometry::torbit{geometry::tpolar{0.1_m, 270._deg, 90._deg},
-								 40_s, 0_s},
+				geometry::torbit{geometry::tpolar{0.1_m, 270_deg, 90_deg}, 40_s,
+								 0_s},
 				0.01_m});
 
 		tsimulator simulation(std::move(universe));
@@ -101,26 +101,26 @@ struct tunit_test
 		celestial::tuniverse universe;
 		universe.add(celestial::tsun{
 				"sun1", geometry::tcartesian{0_m, 0_m, 0_m},
-				geometry::torbit{geometry::tpolar{0.1_m, 0._deg, 90._deg}, 40_s,
+				geometry::torbit{geometry::tpolar{0.1_m, 0_deg, 90_deg}, 40_s,
 								 0_s},
 				0.01_m, 1_J});
 
 		universe.add(celestial::tsun{
 				"sun2", geometry::tcartesian{0_m, 0_m, 0_m},
-				geometry::torbit{geometry::tpolar{0.1_m, 90._deg, 90._deg},
-								 40_s, 0_s},
+				geometry::torbit{geometry::tpolar{0.1_m, 90_deg, 90_deg}, 40_s,
+								 0_s},
 				0.001_m, 1_J});
 
 		universe.add(celestial::tmoon{
 				"moon1", geometry::tcartesian{0_m, 0_m, 0_m},
-				geometry::torbit{geometry::tpolar{0.1_m, 180._deg, 90._deg},
-								 1_s, 0_s},
+				geometry::torbit{geometry::tpolar{0.1_m, 180_deg, 90_deg}, 1_s,
+								 0_s},
 				0.001_m});
 
 		universe.add(celestial::tmoon{
 				"moon2", geometry::tcartesian{0_m, 0_m, 0_m},
-				geometry::torbit{geometry::tpolar{0.1_m, 270._deg, 90._deg},
-								 40_s, 0_s},
+				geometry::torbit{geometry::tpolar{0.1_m, 270_deg, 90_deg}, 40_s,
+								 0_s},
 				0.01_m});
 
 		tsimulator simulation(std::move(universe));
@@ -140,26 +140,26 @@ struct tunit_test
 		celestial::tuniverse universe;
 		universe.add(celestial::tsun{
 				"sun1", geometry::tcartesian{0_m, 0_m, 0_m},
-				geometry::torbit{geometry::tpolar{0.1_m, 0._deg, 90._deg}, 40_s,
+				geometry::torbit{geometry::tpolar{0.1_m, 0_deg, 90_deg}, 40_s,
 								 0_s},
 				0.01_m, 1_J});
 
 		universe.add(celestial::tsun{
 				"sun2", geometry::tcartesian{0_m, 0_m, 0_m},
-				geometry::torbit{geometry::tpolar{0.1_m, 90._deg, 90._deg},
-								 40_s, 0_s},
+				geometry::torbit{geometry::tpolar{0.1_m, 90_deg, 90_deg}, 40_s,
+								 0_s},
 				0.01_m, 1_J});
 
 		universe.add(celestial::tmoon{
 				"moon1", geometry::tcartesian{0_m, 0_m, 0_m},
-				geometry::torbit{geometry::tpolar{0.1_m, 180._deg, 90._deg},
-								 40_s, 0_s},
+				geometry::torbit{geometry::tpolar{0.1_m, 180_deg, 90_deg}, 40_s,
+								 0_s},
 				0.001_m});
 
 		universe.add(celestial::tmoon{
 				"moon2", geometry::tcartesian{0_m, 0_m, 0_m},
-				geometry::torbit{geometry::tpolar{0.1_m, 270._deg, 90._deg},
-								 1_s, 0_s},
+				geometry::torbit{geometry::tpolar{0.1_m, 270_deg, 90_deg}, 1_s,
+								 0_s},
 				0.001_m});
 
 		tsimulator simulation(std::move(universe));
@@ -178,13 +178,13 @@ struct tunit_test
 		celestial::tuniverse universe;
 		universe.add(celestial::tsun{
 				"sun1", geometry::tcartesian{0_m, 0_m, 0_m},
-				geometry::torbit{geometry::tpolar{0.1_m, 0._deg, 90._deg}, 4_s,
+				geometry::torbit{geometry::tpolar{0.1_m, 0_deg, 90_deg}, 4_s,
 								 0_s},
 				0.001_m, 1_J});
 
 		universe.add(celestial::tsun{
 				"sun2", geometry::tcartesian{0_m, 0_m, 0_m},
-				geometry::torbit{geometry::tpolar{0.1_m, 90._deg, 90._deg}, 1_s,
+				geometry::torbit{geometry::tpolar{0.1_m, 90_deg, 90_deg}, 1_s,
 								 0_s},
 				0.001_m, 1_J});
 

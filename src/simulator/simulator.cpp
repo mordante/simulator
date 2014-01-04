@@ -47,19 +47,18 @@ static simulation::tsimulator load()
 	celestial::tuniverse universe;
 	universe.add(celestial::tsun{
 			"Greater sun", geometry::tcartesian{0_m, 0_m, 0_m},
-			geometry::torbit{geometry::tpolar{0.01_m, 0._deg, 90._deg}, 4_s,
+			geometry::torbit{geometry::tpolar{0.01_m, 0_deg, 90_deg}, 4_s,
 							 16_s},
 			0.002_m, 1_J});
 	universe.add(celestial::tsun{
 			"Lesser sun", geometry::tcartesian{0_m, 0_m, 0_m},
-			geometry::torbit{geometry::tpolar{0.1_m, 0._deg, 90._deg}, 16_s,
+			geometry::torbit{geometry::tpolar{0.1_m, 0_deg, 90_deg}, 16_s,
 							 256_s},
 			0.001_m, 1_J});
 
 	universe.add(celestial::tmoon{
 			"Zar", geometry::tcartesian{0_m, 0_m, 0_m},
-			geometry::torbit{geometry::tpolar{1_m, 0._deg, 90._deg}, 16_s,
-							 256_s},
+			geometry::torbit{geometry::tpolar{1_m, 0_deg, 90_deg}, 16_s, 256_s},
 			0.001_m});
 
 	universe.add(celestial::tplanet{"The continent",

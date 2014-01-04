@@ -27,9 +27,7 @@ using namespace simulation::detail;
 
 static void load()
 {
-	const tsun result{"sun", geometry::tcartesian{unit::tlength{1.23},
-												  unit::tlength{2.34},
-												  unit::tlength{3.45}}};
+	const tsun result{"sun", geometry::tcartesian{1.23_m, 2.34_m, 3.45_m}};
 
 	boost::property_tree::ptree position;
 	position.put("version", "1");
@@ -60,9 +58,7 @@ static void load()
 
 static void store()
 {
-	const tsun input{"sun", geometry::tcartesian{unit::tlength{1.23},
-												 unit::tlength{2.34},
-												 unit::tlength{3.45}}};
+	const tsun input{"sun", geometry::tcartesian{1.23_m, 2.34_m, 3.45_m}};
 
 	const boost::property_tree::ptree output{input.store()};
 

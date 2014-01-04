@@ -31,14 +31,10 @@ struct tunit_test
 	static void load()
 	{
 		const tmoon result{
-				"moon",
-				geometry::tcartesian{unit::tlength{1.23}, unit::tlength{2.34},
-									 unit::tlength{3.45}},
-				geometry::torbit{geometry::tpolar{unit::tlength{4.56},
-												  unit::tangle{5.67},
-												  unit::tangle{6.78}},
-								 unit::ttime{7}, unit::ttime{8}},
-				unit::tlength{9.10}};
+				"moon", geometry::tcartesian{1.23_m, 2.34_m, 3.45_m},
+				geometry::torbit{geometry::tpolar{4.56_m, 5.67_rad, 6.78_rad},
+								 7_s, 8_s},
+				9.10_m};
 
 		boost::property_tree::ptree origin;
 		origin.put("version", "1");
@@ -92,14 +88,11 @@ struct tunit_test
 	static void store()
 
 	{
-		const tmoon input{"moon", geometry::tcartesian{unit::tlength{1.23},
-													   unit::tlength{2.34},
-													   unit::tlength{3.45}},
-						  geometry::torbit{geometry::tpolar{unit::tlength{4.56},
-															unit::tangle{5.67},
-															unit::tangle{6.78}},
-										   unit::ttime{7}, unit::ttime{8}},
-						  unit::tlength{9.10}};
+		const tmoon input{
+				"moon", geometry::tcartesian{1.23_m, 2.34_m, 3.45_m},
+				geometry::torbit{geometry::tpolar{4.56_m, 5.67_rad, 6.78_rad},
+								 7_s, 8_s},
+				9.10_m};
 
 		const boost::property_tree::ptree output{input.store()};
 

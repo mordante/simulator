@@ -76,7 +76,7 @@ rotation_angle(unit::ttime time, const unit::ttime period)
 
 	/* If the period == 0_s there is no rotation. */
 	if(period == 0_s) {
-		return unit::tangle{0.};
+		return 0_rad;
 	}
 
 	/* Promote the T's of the unit:ttime to the T of unit:tangle. */

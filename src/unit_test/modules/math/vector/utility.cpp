@@ -38,15 +38,12 @@ BOOST_AUTO_TEST_CASE(test_modules_math_vector_utility)
 	}
 
 	{
-		static_assert(sum(tvector<unit::tlength, 3>{
-							  {unit::tlength{1}, unit::tlength{2},
-							   unit::tlength{3}}}) == unit::tlength{6.},
+		static_assert(sum(tvector<unit::tlength, 3>{{1_m, 2_m, 3_m}}) == 6_m,
 					  "No compile-time constant");
 	}
 
 	{
-		constexpr tvector<unit::tlength, 3> vector{
-				{unit::tlength{1}, unit::tlength{2}, unit::tlength{3}}};
+		constexpr tvector<unit::tlength, 3> vector{{1_m, 2_m, 3_m}};
 		constexpr unit::tlength result{6.};
 		BOOST_CHECK_EQUAL(sum(vector) == result, true);
 	}
@@ -60,15 +57,13 @@ BOOST_AUTO_TEST_CASE(test_modules_math_vector_utility)
 	}
 
 	{
-		static_assert(pow_sum<1>(tvector<unit::tlength, 3>{
-							  {unit::tlength{1}, unit::tlength{2},
-							   unit::tlength{3}}}) == unit::tlength{6.},
+		static_assert(pow_sum<1>(tvector<unit::tlength, 3>{{1_m, 2_m, 3_m}})
+					  == 6_m,
 					  "No compile-time constant");
 	}
 
 	{
-		constexpr tvector<unit::tlength, 3> vector{
-				{unit::tlength{1}, unit::tlength{2}, unit::tlength{3}}};
+		constexpr tvector<unit::tlength, 3> vector{{1_m, 2_m, 3_m}};
 		constexpr unit::tlength result{6.};
 		BOOST_CHECK_EQUAL(pow_sum<1>(vector) == result, true);
 	}
@@ -83,16 +78,14 @@ BOOST_AUTO_TEST_CASE(test_modules_math_vector_utility)
 
 	{
 		using tresult = decltype(unit::tlength{} * unit::tlength{});
-		static_assert(pow_sum<2>(tvector<unit::tlength, 3>{
-							  {unit::tlength{1}, unit::tlength{2},
-							   unit::tlength{3}}}) == tresult{14.},
+		static_assert(pow_sum<2>(tvector<unit::tlength, 3>{{1_m, 2_m, 3_m}})
+					  == tresult{14.},
 					  "No compile-time constant");
 	}
 
 	{
 		using tresult = decltype(unit::tlength{} * unit::tlength{});
-		constexpr tvector<unit::tlength, 3> vector{
-				{unit::tlength{1}, unit::tlength{2}, unit::tlength{3}}};
+		constexpr tvector<unit::tlength, 3> vector{{1_m, 2_m, 3_m}};
 		constexpr tresult result{14.};
 		BOOST_CHECK_EQUAL(pow_sum<2>(vector) == result, true);
 	}
@@ -108,17 +101,15 @@ BOOST_AUTO_TEST_CASE(test_modules_math_vector_utility)
 	{
 		using tresult
 				= decltype(unit::tlength{} * unit::tlength{} * unit::tlength{});
-		static_assert(pow_sum<3>(tvector<unit::tlength, 3>{
-							  {unit::tlength{1}, unit::tlength{2},
-							   unit::tlength{3}}}) == tresult{36.},
+		static_assert(pow_sum<3>(tvector<unit::tlength, 3>{{1_m, 2_m, 3_m}})
+					  == tresult{36.},
 					  "No compile-time constant");
 	}
 
 	{
 		using tresult
 				= decltype(unit::tlength{} * unit::tlength{} * unit::tlength{});
-		constexpr tvector<unit::tlength, 3> vector{
-				{unit::tlength{1}, unit::tlength{2}, unit::tlength{3}}};
+		constexpr tvector<unit::tlength, 3> vector{{1_m, 2_m, 3_m}};
 		constexpr tresult result{36.};
 		BOOST_CHECK_EQUAL(pow_sum<3>(vector) == result, true);
 	}
@@ -134,17 +125,15 @@ BOOST_AUTO_TEST_CASE(test_modules_math_vector_utility)
 	{
 		using tresult = decltype(unit::tlength{} * unit::tlength{}
 								 * unit::tlength{} * unit::tlength{});
-		static_assert(pow_sum<4>(tvector<unit::tlength, 3>{
-							  {unit::tlength{1}, unit::tlength{2},
-							   unit::tlength{3}}}) == tresult{98.},
+		static_assert(pow_sum<4>(tvector<unit::tlength, 3>{{1_m, 2_m, 3_m}})
+					  == tresult{98.},
 					  "No compile-time constant");
 	}
 
 	{
 		using tresult = decltype(unit::tlength{} * unit::tlength{}
 								 * unit::tlength{} * unit::tlength{});
-		constexpr tvector<unit::tlength, 3> vector{
-				{unit::tlength{1}, unit::tlength{2}, unit::tlength{3}}};
+		constexpr tvector<unit::tlength, 3> vector{{1_m, 2_m, 3_m}};
 		constexpr tresult result{98.};
 		BOOST_CHECK_EQUAL(pow_sum<4>(vector) == result, true);
 	}
@@ -158,9 +147,8 @@ BOOST_AUTO_TEST_CASE(test_modules_math_vector_utility)
 	}
 
 	{
-		constexpr tvector<unit::tlength, 2> vector{
-				{unit::tlength{3}, unit::tlength{4}}};
-		constexpr unit::tlength result{unit::tlength{5}};
+		constexpr tvector<unit::tlength, 2> vector{{3_m, 4_m}};
+		constexpr unit::tlength result{5_m};
 		BOOST_CHECK_EQUAL(length(vector) == result, true);
 	}
 
